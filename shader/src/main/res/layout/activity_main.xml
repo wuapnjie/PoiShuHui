@@ -1,0 +1,24 @@
+<RelativeLayout
+	android:id="@+id/container_main"
+	android:background="#f7f8f3"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<com.flying.xiaopo.shader.View.PullToRefresh
+		android:id="@+id/pulltorefrech"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/rv_reminds"
+			android:scrollbars="none"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		</android.support.v7.widget.RecyclerView>
+
+	</com.flying.xiaopo.shader.View.PullToRefresh>
+
+
+
+</RelativeLayout>

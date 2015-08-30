@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="5dp"
+	android:translationZ="50dp">
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical">
+
+		<ImageView
+			android:id="@+id/iv_header"
+			android:layout_width="match_parent"
+			android:layout_height="200dp"
+			android:background="#ff3e3275"
+			>
+
+		</ImageView>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_below="@+id/iv_header"
+			android:background="#423876"
+			>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="16dp"
+				android:gravity="center"
+				android:text="@string/tips"
+				android:textColor="#fff"/>
+		</LinearLayout>
+
+
+
+			<ImageButton
+				android:id="@+id/ibtn_add"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentTop="true"
+				android:layout_marginEnd="16dp"
+				android:layout_marginTop="175dp"
+				android:src="@mipmap/ic_plus_black_24dp"
+				android:background="@drawable/circle_background"/>
+
+	</RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,38 @@
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:colorPrimaryDark">#26c6da</item>
+		<item name="android:colorPrimary">#00bcd4</item>
+		<item name="android:navigationBarColor">#006064</item>
+		<item name="android:statusBarColor">#26c6da</item>
+		<!-- Customize your theme here. -->
+	</style>
+
+	<color name="toolbar_color">#00bcd4</color>
+
+	<color name="tab_color">#00bcd4</color>
+	<color name="tab_text_color">#fff</color>
+
+	<color name="fragment_background">#fff</color>
+
+	<color name="title_background">#7fff</color>
+	<color name="title_textcolor">#757575</color>
+
+	<color name="ImageView_background">#b2c6ce</color>
+
+	<color name="pagebar_background">#7fff</color>
+	<color name="pagebar_text_color">#9e9e9e</color>
+
+	<color name="btn_transparent">@android:color/transparent</color>
+
+	<color name="comic_background">#fff</color>
+
+	<color name="viewpager_background">#eeee</color>
+
+	<color name="default_color">#fff</color>
+	<color name="default_background">#fff</color>
+
+	<color name="item_title_color">#9e9e9e</color>
+
+</resources>

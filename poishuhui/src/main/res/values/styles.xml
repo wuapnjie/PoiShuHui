@@ -1,0 +1,39 @@
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="colorPrimaryDark">#26c6da</item>
+		<item name="colorPrimary">#00bcd4</item>
+		<!-- Customize your theme here. -->
+	</style>
+	<style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimaryDark">#26c6da</item>
+		<item name="colorPrimary">#00bcd4</item>
+	</style>
+
+	<color name="toolbar_color">#00bcd4</color>
+
+	<color name="tab_color">#00bcd4</color>
+	<color name="tab_text_color">#fff</color>
+
+	<color name="fragment_background">#fff</color>
+
+	<color name="title_background">#7fff</color>
+	<color name="title_textcolor">#000</color>
+
+	<color name="ImageView_background">#b2c6ce</color>
+
+	<color name="pagebar_background">#7fff</color>
+	<color name="pagebar_text_color">#d000</color>
+
+	<color name="btn_transparent">@android:color/transparent</color>
+
+	<color name="comic_background">#fff</color>
+
+	<color name="viewpager_background">#eeee</color>
+
+	<color name="default_color">#fff</color>
+	<color name="default_background">#fff</color>
+
+	<color name="item_title_color">#d000</color>
+</resources>

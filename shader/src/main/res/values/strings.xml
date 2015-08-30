@@ -1,0 +1,21 @@
+<resources>
+	<string name="app_name">Tips</string>
+
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="tips">Tips</string>
+	<string name="details">Details</string>
+	<string name="hint">Please write the event which you want to do.</string>
+	<string name="hope1">只要我们能梦想的，我们就能实现。</string>
+	<string name="hope2">做对的事情比把事情做对重要。</string>
+	<string name="hope3">自弃者扶不起，自强者击不倒。</string>
+	<string name="hope4">莫找借口失败，只找理由成功。</string>
+	<string name="hope5">昨晚多几分钟的准备，今天少几小时的麻烦。</string>
+	<string name="hope6">只要路是对的，就不怕路远。</string>
+	<string name="hope7">你一天的爱心可能带来别人一生的感谢。</string>
+	<string name="hope8">宁可慢些，不要太急而错误；宁可笨些，不要太巧而败事。</string>
+	<string name="hope9">你的脸是为了呈现上帝赐给人类最贵重的礼物——微笑.</string>
+	<string name="hope10">人生的烦恼，多在于知道的太多，而做的太少。</string>
+	<string name="hope11">最重要的就是不要去看远方模糊的，而要做手边清楚的事。</string>
+	<string name="hope12">只要热情犹在，哪怕青春消逝。</string>
+</resources>

@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/swl_refresh"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/rv_menu"
+			android:scrollbars="none"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			></android.support.v7.widget.RecyclerView>
+	</android.support.v4.widget.SwipeRefreshLayout>
+
+	<ProgressBar
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:id="@+id/pb_loading"
+		android:layout_centerVertical="true"
+		android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
