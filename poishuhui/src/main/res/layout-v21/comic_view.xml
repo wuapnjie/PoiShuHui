@@ -6,6 +6,7 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
+
 	<uk.co.senab.photoview.PhotoView
 		android:id="@+id/pv_comic"
 		android:layout_width="match_parent"
@@ -16,20 +17,30 @@
 	</uk.co.senab.photoview.PhotoView>
 
 	<LinearLayout
-	android:id="@+id/fail_view"
-	android:visibility="gone"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="#fff"
-	android:gravity="center"
-	android:orientation="vertical">
+		android:id="@+id/fail_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#fff"
+		android:gravity="center"
+		android:orientation="vertical"
+		>
 
-	<Button
-	android:id="@+id/btn_reload"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:background="?android:attr/selectableItemBackgroundBorderless"
-	android:gravity="center"
-	android:text="Reload"/>
+		<ProgressBar
+			android:id="@+id/progressBar"
+			style="?android:attr/progressBarStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+
+		<Button
+			android:id="@+id/btn_reload"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+			android:gravity="center"
+			android:text="Reload"
+			android:textColor="#000"/>
 	</LinearLayout>
+
+
 </FrameLayout>

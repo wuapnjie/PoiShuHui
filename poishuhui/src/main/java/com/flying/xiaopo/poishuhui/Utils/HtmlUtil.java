@@ -13,23 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 解析工具类
  * Created by lenovo on 2015/8/12.
  */
 
 public class HtmlUtil {
-    public static final String URL_MAIN = "http://www.ishuhui.com/";
-    public static final String URL_COMIC = "http://www.ishuhui.com/archives/category/zaixianmanhua/";
-    public static final String URL_COMIC_PREFIX = "http://www.ishuhui.com/archives/category/zaixianmanhua/page/";
-    public static final String URL_SBS = "http://www.ishuhui.com/archives/category/sbs";
+    public static final String URL_MAIN = "http://ishuhui.net/Index";
+    public static final String URL_COMIC = "http://ishuhui.net/Index";
+    public static final String URL_COMIC_PREFIX = "http://ishuhui.net/?PageIndex=";
+    public static final String URL_COMIC_LIST = "http://ishuhui.net/ComicBookList/";
+
+
     public static final String URL_SHARINKAN = "http://www.ishuhui.com/archives/category/news/sharinkan";
-    public static final String URL_NEWS = "http://www.ishuhui.com/archives/category/news/news8";
-    public static final String URL_COLORS = "http://www.ishuhui.com/archives/category/news/colors";
+
     public static Document obtainDocument(String url) {
         Document document = null;
         try {
             document = Jsoup.connect(url).get();
         } catch (IOException e) {
             System.err.println("Jsoup Error");
+
             e.printStackTrace();
         }
         return document;
@@ -38,22 +41,45 @@ public class HtmlUtil {
     /**
      * 获取Slide中的内容
      *
-     * @param url
-     * @return
      */
     public static List<ItemBean> obtainSlide(String url) {
         Document document = obtainDocument(url);
         List<ItemBean> list = new ArrayList<>();
         if (document == null) return null;
 
-        Elements elements = document.select("div#slide").select("div[style]");
+        Elements elements = document.select("ul.mangeListBox").select("li");
+
         for (Element element : elements) {
-            ItemBean itemBean = new ItemBean();
-            String string = element.attr("style");
-            itemBean.setImageURL(string.substring(string.indexOf("(") + 1, string.indexOf(")")));
-            itemBean.setTitle(element.select("a").attr("title").replace("<br>", "\n"));
-            itemBean.setLink(element.select("a").attr("href"));
-            list.add(itemBean);
+
+            ItemBean bean = new ItemBean();
+            bean.setImageURL(element.select("img").attr("src"));
+            bean.setTitle(element.select("h1").text() + "\n" + element.select("h2").text());
+            bean.setLink("http://ishuhui.net" + element.select("div.magesPhoto").select("a").attr("href"));
+
+            list.add(bean);
+        }
+        return list;
+    }
+
+    /**
+     * 获取在线漫画中的信息
+     *
+     */
+    public static List<ItemBean> obtainComicList(String url) {
+        Document document = obtainDocument(url);
+        List<ItemBean> list = new ArrayList<>();
+        if (document == null) return null;
+
+        Elements elements = document.select("ul.mangeListBox").select("li");
+
+        for (Element element : elements) {
+
+            ItemBean bean = new ItemBean();
+            bean.setImageURL(element.select("img").attr("src"));
+            bean.setTitle(element.select("h1").text() + "\n" + element.select("h2").text());
+            bean.setLink("http://ishuhui.net" + element.select("div.magesPhoto").select("a").attr("href"));
+
+            list.add(bean);
         }
         return list;
     }
@@ -61,55 +87,42 @@ public class HtmlUtil {
     /**
      * 获取漫画列表中的信息
      *
-     * @param url
-     * @return
      */
-    public static List<ItemBean> obtainComicList(String url) {
+    public static List<ItemBean> obtainComicBookList(String url) {
         Document document = obtainDocument(url);
         List<ItemBean> list = new ArrayList<>();
         if (document == null) return null;
 
-        Elements elements = document.select("div.row").select("div.thumbnail");
+        Elements elements = document.select("ul.chinaMangaContentList").select("li");
+
         for (Element element : elements) {
+
             ItemBean bean = new ItemBean();
             bean.setImageURL(element.select("img").attr("src"));
-            bean.setTitle(element.select("a").attr("title").replace("<br>", "\n"));
-            bean.setLink(element.select("a").attr("href"));
+            bean.setTitle(element.select("p").text());
+            bean.setLink("http://ishuhui.net" + element.select("div.chinaMangaContentImg").select("a").attr("href"));
+
             list.add(bean);
         }
         return list;
     }
+
 
     public static List<ComicBean> obtainComicContent(String url) {
         Document document = obtainDocument(url);
         List<ComicBean> list = new ArrayList<>();
         if (document == null) return null;
 
-        Elements elements = document.select("div.article-content").select("p,h4");
+        Elements elements = document.select("div.mangaContentMainImg").select("img");
         for (Element element : elements) {
-
             ComicBean bean = new ComicBean();
+            if (element.attr("src").endsWith(".png") || element.attr("src").endsWith(".jpg") || element.attr("src").endsWith(".JPEG"))
+                bean.setPicURL(element.attr("src"));
+            else
+                bean.setPicURL(element.attr("data-original"));
+            bean.setText("");
 
-            bean.setText("\t\t"+element.text()+"\n");
-
-            Elements elements_src = element.select("img[src]");
-
-            if (elements_src.size() == 0) {
-                bean.setPicURL("");
-                list.add(bean);
-            } else {
-                for (int i = 0; i < elements_src.size(); i++) {
-                    if (i == 0) {
-                        bean.setPicURL(elements_src.get(i).attr("src"));
-                        list.add(bean);
-                    } else {
-                        ComicBean bean1 = new ComicBean();
-                        bean1.setText("");
-                        bean1.setPicURL(elements_src.get(i).attr("src"));
-                        list.add(bean1);
-                    }
-                }
-            }
+            list.add(bean);
         }
         return list;
     }

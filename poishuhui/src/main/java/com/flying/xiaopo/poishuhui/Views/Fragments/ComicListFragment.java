@@ -30,7 +30,7 @@ import butterknife.InjectView;
  * ∆Ÿ≤º≤ºæ÷  ≈‰∆˜
  * Created by lenovo on 2015/8/19.
  */
-public class SecondFragment extends Fragment implements PageBar.onPageItemClickListener, GridAdapter.OnItemClickListener {
+public class ComicListFragment extends Fragment implements PageBar.onPageItemClickListener, GridAdapter.OnItemClickListener {
     public static final String INTENT_KEY_LINK = "link";
 
     @InjectView(R.id.rv_second_list)
@@ -83,7 +83,7 @@ public class SecondFragment extends Fragment implements PageBar.onPageItemClickL
                 super.onPostExecute(baseBeans);
                 adapter.obtainData(baseBeans);
                 adapter.notifyDataSetChanged();
-                adapter.setOnItemClickListener(SecondFragment.this);
+                adapter.setOnItemClickListener(ComicListFragment.this);
                 //rv_second_list.setAdapter(adapter);
             }
         };

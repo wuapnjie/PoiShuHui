@@ -19,8 +19,8 @@ import android.view.ViewGroup;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
 import com.flying.xiaopo.poishuhui.Views.Fragments.MainFragment;
-import com.flying.xiaopo.poishuhui.Views.Fragments.SecondFragment;
-import com.flying.xiaopo.poishuhui.Views.Fragments.ThirdFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicBookListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> pagers;
 
     MainFragment mainFragment;
-    SecondFragment secondFragment;
-    ThirdFragment thirdFragment, forthFragment, fifthFragment, sixthFragment;
+    ComicListFragment comicListFragment;
+    ComicBookListFragment comicBookListFragment, forthFragment;
 
     public static final int DEVICE_WIDTH;
     public static final int DEVICE_HEIGHT;
+
     static {
         DEVICE_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
         DEVICE_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -73,31 +74,27 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
 
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         pagers = new ArrayList<>();
         mainFragment = new MainFragment();
-        secondFragment = new SecondFragment();
-        thirdFragment = new ThirdFragment();
-        forthFragment = new ThirdFragment();
-        fifthFragment = new ThirdFragment();
-        sixthFragment = new ThirdFragment();
-        thirdFragment.setTaskURL(HtmlUtil.URL_SBS);
+        comicListFragment = new ComicListFragment();
+        comicBookListFragment = new ComicBookListFragment();
+        forthFragment = new ComicBookListFragment();
+
+        comicBookListFragment.setTaskURL(HtmlUtil.URL_COMIC_LIST);
         forthFragment.setTaskURL(HtmlUtil.URL_SHARINKAN);
-        fifthFragment.setTaskURL(HtmlUtil.URL_NEWS);
-        sixthFragment.setTaskURL(HtmlUtil.URL_COLORS);
+
 
         pagers.add(mainFragment);
-        pagers.add(secondFragment);
-        pagers.add(thirdFragment);
+        pagers.add(comicListFragment);
+        pagers.add(comicBookListFragment);
         pagers.add(forthFragment);
-        pagers.add(fifthFragment);
-        pagers.add(sixthFragment);
     }
 
     public class MyViewPagerAdapter extends FragmentPagerAdapter {
-        public static final int PAGER_NUM = 6;
-        int[] titles = new int[]{R.string.tab_1, R.string.tab_2, R.string.tab_3, R.string.tab_4, R.string.tab_5, R.string.tab_6};
+        public static final int PAGER_NUM = 4;
+        int[] titles = new int[]{R.string.tab_1, R.string.tab_2, R.string.tab_3, R.string.tab_4};
 
         public MyViewPagerAdapter(FragmentManager fm) {
             super(fm);

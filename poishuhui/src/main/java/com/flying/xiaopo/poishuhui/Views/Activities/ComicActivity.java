@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
-import com.flying.xiaopo.poishuhui.Views.Fragments.SecondFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ComicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comic);
         ButterKnife.inject(this);
         init();
-        aimURL = getIntent().getStringExtra(SecondFragment.INTENT_KEY_LINK);
+        aimURL = getIntent().getStringExtra(ComicListFragment.INTENT_KEY_LINK);
 
         //System.out.println(aimURL);
 
@@ -96,22 +96,30 @@ public class ComicActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.comic_view, container, false);
             final PhotoView pv_comic = (PhotoView) rootView.findViewById(R.id.pv_comic);
             final LinearLayout fail_view = (LinearLayout) rootView.findViewById(R.id.fail_view);
+
+            fail_view.setVisibility(View.VISIBLE);
+
+            if (cache.getBitmap(datas.get(position).getPicURL()) != null) {
+                pv_comic.setImageBitmap(cache.getBitmap(datas.get(position).getPicURL()));
+                fail_view.setVisibility(View.INVISIBLE);
+                return rootView;
+            }
+
             ImageLoader loader = new ImageLoader(mQueue, cache);
 //            ImageLoader.ImageListener listener = ImageLoader.getImageListener(pv_comic, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
             ImageLoader.ImageListener listener = new ImageLoader.ImageListener() {
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean b) {
-                    fail_view.setVisibility(View.GONE);
-                    if(response.getBitmap() != null) {
+                    if (response.getBitmap() != null) {
                         pv_comic.setImageBitmap(response.getBitmap());
                     } else {
                         pv_comic.setImageResource(R.color.default_color);
                     }
+                    fail_view.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
-                    pv_comic.setVisibility(View.INVISIBLE);
                     fail_view.setVisibility(View.VISIBLE);
                 }
             };

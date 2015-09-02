@@ -11,8 +11,7 @@ import com.flying.xiaopo.poishuhui.Adapters.LinearAdapter;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
-import com.flying.xiaopo.poishuhui.Views.Activities.MainActivity;
-import com.flying.xiaopo.poishuhui.Views.Fragments.ThirdFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicBookListFragment;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class TextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
         ButterKnife.inject(this);
-        aimURL = getIntent().getStringExtra(ThirdFragment.INTENT_KEY);
+        aimURL = getIntent().getStringExtra(ComicBookListFragment.INTENT_KEY);
         init();
         obtainTORV(aimURL);
     }

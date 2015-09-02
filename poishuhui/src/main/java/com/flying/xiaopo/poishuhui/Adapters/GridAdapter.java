@@ -42,8 +42,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
     /**
      * 提供获取数据的方法
      *
-     * @param data
-     * @return
      */
     public void obtainData(List<ItemBean> data) {
         mData = data;
@@ -92,9 +90,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
+
+        public TextView getTv_title() {
+            return tv_title;
+        }
     }
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
+
 }

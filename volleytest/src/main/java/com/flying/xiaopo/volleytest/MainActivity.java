@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.btn_sendrequest)
     public void sendRequest() {
         MyTask task = new MyTask();
-        task.execute("http://www.ishuhui.com/archives/374476");
+        task.execute("http://ishuhui.net/ReadComicBooks/2310");
         System.out.println("click");
     }
 
@@ -58,67 +58,23 @@ public class MainActivity extends ActionBarActivity {
             System.err.println("Error");
             e.printStackTrace();
         }
-        List<ComicBean> beanList = new ArrayList<>();
+        List<ComicBean> list = new ArrayList<>();
 
-        Elements elements = document.select("div.article-content");
-        stringBuffer.append(elements.select("p,h4").toString()+"\n\n\n");
+        Elements elements = document.select("div.mangaContentMainImg").select("img");
+        stringBuffer.append(elements.toString()+"\n\n\n");
 
-        for (Element element : elements.select("p,h4")) {
-            stringBuffer.append(element.toString()+"\n\n\n");
-
+        for (Element element : elements) {
             ComicBean bean = new ComicBean();
 
-            bean.setText(element.text());
-
-            //System.out.println(element.text());
-
-            Elements elements_src = element.select("img[src]");
-
-            if (elements_src.size() == 0) {
-                bean.setPicURL("");
-                beanList.add(bean);
-            } else {
-                for (int i = 0; i < elements_src.size(); i++) {
-                    if (i == 0) {
-                        bean.setPicURL(elements_src.get(i).attr("src"));
-                        beanList.add(bean);
-                    } else {
-                        ComicBean bean1 = new ComicBean();
-                        bean1.setText("");
-                        bean1.setPicURL(elements_src.get(i).attr("src"));
-                        beanList.add(bean1);
-                    }
-                }
-            }
+            bean.setPicURL(element.attr("data-original"));
+            bean.setText("");
+            stringBuffer.append(element.attr("data-original")+"\n");
+            list.add(bean);
         }
-        for (ComicBean bean1 : beanList) {
-            System.out.println(bean1.getText() + bean1.getPicURL());
+        for (ComicBean bean1 : list) {
+            System.out.println(bean1.getPicURL());
+            System.out.println(bean1.getText());
         }
-//        Elements element1 = document.select("p");
-//
-//
-//        ????????????
-////        for (int i = 0;i<element1.select("a[href][title]").size();i++){
-////            stringBuffer.append(element1.get(i).attr("href"));
-////            stringBuffer.append("\n");
-////            stringBuffer.append(element1.get(i).attr("title"));
-////            stringBuffer.append("\n");
-////            stringBuffer.append(element1.get(i).select("img").attr("src"));
-////            stringBuffer.append("\n");
-////            stringBuffer.append("\n");
-////        }
-//        for (org.jsoup.nodes.Element element : element1.select("img[src][alt]")) {
-//            if (element.select("img").attr("src").isEmpty()){
-//                continue;
-//            }
-////            stringBuffer.append(element.attr("href"));
-////            stringBuffer.append("\n");
-////            stringBuffer.append(element.attr("title"));
-////            stringBuffer.append("\n");
-//            stringBuffer.append(element.select("img").attr("src"));
-//            stringBuffer.append("\n");
-//            stringBuffer.append("\n");
-//        }
 
         return stringBuffer.toString();
     }
@@ -156,6 +112,49 @@ public class MainActivity extends ActionBarActivity {
 
         public void setText(String text) {
             this.text = text;
+        }
+    }
+
+    public class ItemBean {
+        //图片的URL
+        private String imageURL;
+        //标题
+        private String title;
+        //图片链接
+        private String link;
+
+        public ItemBean() {
+        }
+
+        public ItemBean(String imageURL, String title, String link) {
+            this.imageURL = imageURL;
+            this.title = title;
+            this.link = link;
+        }
+
+        public String getLink() {
+            return link;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+
+        public String getImageURL() {
+            return imageURL;
+        }
+
+        public void setImageURL(String imageURL) {
+            this.imageURL = imageURL;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 }
