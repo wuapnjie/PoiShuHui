@@ -67,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
      * 初始化的设置
      */
     private void init() {
-        toolbar.setTitle(R.string.app_name);
-        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setLogo(R.drawable.ic_logo);
+//        toolbar.setTitle(R.string.app_name);
+//        toolbar.setTitleTextColor(Color.WHITE);
         toolbar.inflateMenu(R.menu.menu_start);
 
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
