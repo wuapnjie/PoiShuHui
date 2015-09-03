@@ -7,21 +7,21 @@ import java.util.List;
  */
 public class ContainerBean {
     private String title;      //container's title;
-    private List<ChildItem> childDataList;
+    private List<ChildItemBean> childDataList;
 
     public ContainerBean() {
     }
 
-    public ContainerBean(List<ChildItem> childDataList, String title) {
+    public ContainerBean(List<ChildItemBean> childDataList, String title) {
         this.childDataList = childDataList;
         this.title = title;
     }
 
-    public List<ChildItem> getChildDataList() {
+    public List<ChildItemBean> getChildDataList() {
         return childDataList;
     }
 
-    public void setChildDataList(List<ChildItem> childDataList) {
+    public void setChildDataList(List<ChildItemBean> childDataList) {
         this.childDataList = childDataList;
     }
 

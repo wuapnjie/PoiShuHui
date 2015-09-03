@@ -1,6 +1,8 @@
 package com.flying.xiaopo.poishuhui.Utils;
 
+import com.flying.xiaopo.poishuhui.Beans.ChildItemBean;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
+import com.flying.xiaopo.poishuhui.Beans.ContainerBean;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 
 import org.jsoup.Jsoup;
@@ -22,17 +24,15 @@ public class HtmlUtil {
     public static final String URL_COMIC = "http://ishuhui.net/Index";
     public static final String URL_COMIC_PREFIX = "http://ishuhui.net/?PageIndex=";
     public static final String URL_COMIC_LIST = "http://ishuhui.net/ComicBookList/";
+    public static final String URL_NEWS = "http://ishuhui.net/CMS/";
+    public static final String URL_NEWS_PREFIX = "http://ishuhui.net/";
 
-
-    public static final String URL_SHARINKAN = "http://www.ishuhui.com/archives/category/news/sharinkan";
 
     public static Document obtainDocument(String url) {
         Document document = null;
         try {
             document = Jsoup.connect(url).get();
         } catch (IOException e) {
-            System.err.println("Jsoup Error");
-
             e.printStackTrace();
         }
         return document;
@@ -40,7 +40,6 @@ public class HtmlUtil {
 
     /**
      * 获取Slide中的内容
-     *
      */
     public static List<ItemBean> obtainSlide(String url) {
         Document document = obtainDocument(url);
@@ -63,7 +62,6 @@ public class HtmlUtil {
 
     /**
      * 获取在线漫画中的信息
-     *
      */
     public static List<ItemBean> obtainComicList(String url) {
         Document document = obtainDocument(url);
@@ -86,7 +84,6 @@ public class HtmlUtil {
 
     /**
      * 获取漫画列表中的信息
-     *
      */
     public static List<ItemBean> obtainComicBookList(String url) {
         Document document = obtainDocument(url);
@@ -123,6 +120,33 @@ public class HtmlUtil {
             bean.setText("");
 
             list.add(bean);
+        }
+        return list;
+    }
+
+    public static List<ContainerBean> obtainContainer(String url) {
+        Document document = obtainDocument(url);
+        List<ContainerBean> list = new ArrayList<>();
+        if (document == null) return null;
+
+        Elements elements = document.select("div.reportersBox").select("div.reportersMain");
+
+        for (Element element : elements) {
+
+            ContainerBean containerBean = new ContainerBean();
+            containerBean.setTitle(element.select("div.mangeListTitle").select("span").text());
+
+            List<ChildItemBean> childItemList = new ArrayList<>();
+
+            for (Element ele : element.select("ul.reportersList").select("li").select("a")) {
+                ChildItemBean childItemBean = new ChildItemBean();
+                childItemBean.setLink(URL_NEWS_PREFIX + ele.attr("href"));
+                childItemBean.setChildTitle(ele.select("span").get(0).text().replace("&amp", "\t"));
+                childItemBean.setCreatedTime(ele.select("span").get(1).text());
+                childItemList.add(childItemBean);
+            }
+            containerBean.setChildDataList(childItemList);
+            list.add(containerBean);
         }
         return list;
     }

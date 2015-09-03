@@ -35,4 +35,6 @@
 
 	<color name="item_title_color">#9e9e9e</color>
 
+	<color name="news_white">#fff</color>
+	<color name="news_gray">#1000</color>
 </resources>

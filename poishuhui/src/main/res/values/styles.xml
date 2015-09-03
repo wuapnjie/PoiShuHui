@@ -36,4 +36,7 @@
 	<color name="default_background">#fff</color>
 
 	<color name="item_title_color">#d000</color>
+
+	<color name="news_white">#fff</color>
+	<color name="news_gray">#1000</color>
 </resources>
