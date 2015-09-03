@@ -1,12 +1,10 @@
 package com.flying.xiaopo.poishuhui.Views.Activities;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
+import com.flying.xiaopo.poishuhui.Utils.MyCache;
 import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
 
 import java.util.ArrayList;
@@ -137,7 +136,7 @@ public class ComicActivity extends AppCompatActivity {
     }
 
     /**
-     * ÄÚ²¿ÍøÂçÈÎÎñÀà£¬»ñÈ¡Í¼Æ¬URLs
+     * ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½È¡Í¼Æ¬URLs
      */
     private class Task extends AsyncTask<String, Void, List<ComicBean>> {
 
@@ -154,36 +153,9 @@ public class ComicActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * ÄÚ²¿»º´æÀà
-     */
-    private class MyCache implements ImageLoader.ImageCache {
-
-        private LruCache<String, Bitmap> mCache;
-
-        public MyCache() {
-            int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
-            mCache = new LruCache<String, Bitmap>(maxMemory / 8) {
-                @Override
-                protected int sizeOf(String key, Bitmap value) {
-                    return value.getRowBytes() * value.getHeight();
-                }
-            };
-        }
-
-        @Override
-        public Bitmap getBitmap(String s) {
-            return mCache.get(s);
-        }
-
-        @Override
-        public void putBitmap(String s, Bitmap bitmap) {
-            mCache.put(s, bitmap);
-        }
-    }
 
     /**
-     * ÄÚ´æ½ôÕÅÊ±µ÷ÓÃ
+     * ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
      */
     @Override
     public void onBackPressed() {

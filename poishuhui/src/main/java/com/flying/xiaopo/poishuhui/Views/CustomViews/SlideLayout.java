@@ -12,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
+import com.flying.xiaopo.poishuhui.Utils.MyCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,10 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
 
     Handler handler;
 
+    MyCache myCache;
+
+    RequestQueue mQueue;
+
     public SlideLayout(Context context) {
         super(context);
     }
@@ -59,6 +65,8 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
         super(context, attrs);
         setOrientation(HORIZONTAL);
         init();
+        myCache = new MyCache();
+        mQueue = Volley.newRequestQueue(context);
     }
 
     private void init() {
@@ -68,15 +76,15 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
         params1 = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 15.5f);
         params2 = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 38.0f);
         mData = new ArrayList<>();
-        handler = new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 anim();
-                handler.sendEmptyMessageDelayed(0,2500);
+                handler.sendEmptyMessageDelayed(0, 2500);
             }
         };
-        handler.sendEmptyMessageDelayed(0,2500);
+        handler.sendEmptyMessageDelayed(0, 2500);
     }
 
     @Override
@@ -110,10 +118,17 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
             return;
         }
         mData = data;
-        if (data.size()==0) return;
+        if (data.size() == 0) return;
         for (int i = 0; i < 5; i++) {
+            String iv_url = data.get(i).getImageURL();
+            if (myCache.getBitmap(iv_url) != null) {
+                iv_content[i].setImageBitmap(myCache.getBitmap(iv_url));
+                continue;
+            }
             ItemBean bean = data.get(i);
-            Glide.with(getContext()).load(bean.getImageURL()).override(300, 300).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_content[i]);
+            ImageLoader loader = new ImageLoader(mQueue, myCache);
+            ImageLoader.ImageListener listener = ImageLoader.getImageListener(iv_content[i], R.color.default_color, R.mipmap.ic_launcher);
+            loader.get(iv_url, listener, 200, 200);
             tv_title[i].setText(bean.getTitle());
         }
     }
@@ -122,7 +137,7 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
         return mData;
     }
 
-    private void changeBigPosition(int currentPosition){
+    private void changeBigPosition(int currentPosition) {
         bigposition = currentPosition;
     }
 
@@ -137,7 +152,8 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
             if (i == position) {
                 fl_container[i].setLayoutParams(params2);
                 tv_title[i].setVisibility(VISIBLE);
-                if (onChildClickListenner != null&&bigposition==position) onChildClickListenner.onChildClick(v);
+                if (onChildClickListenner != null && bigposition == position)
+                    onChildClickListenner.onChildClick(v);
                 changeBigPosition(position);
             } else {
                 tv_title[i].setVisibility(INVISIBLE);
@@ -148,8 +164,8 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
 
     }
 
-    private void anim(){
-        int curPos = ++bigposition%5;
+    private void anim() {
+        int curPos = ++bigposition % 5;
         for (int i = 0; i < 5; i++) {
             if (i == curPos) {
                 fl_container[i].setLayoutParams(params2);

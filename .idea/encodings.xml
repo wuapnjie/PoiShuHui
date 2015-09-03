@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/poishuhui/src/main/java/com/flying/xiaopo/poishuhui/Utils/HtmlUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/poishuhui/src/main/java/com/flying/xiaopo/poishuhui/Views/Activities/MainActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/shader/src/main/java/com/flying/xiaopo/shader/Activity/AddTipActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/volleytest/src/main/java/com/flying/xiaopo/volleytest/MainActivity.java" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

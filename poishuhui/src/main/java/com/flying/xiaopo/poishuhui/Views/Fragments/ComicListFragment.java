@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * ÆÙ²¼²¼¾ÖÊÊÅäÆ÷
+ * ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * Created by lenovo on 2015/8/19.
  */
 public class ComicListFragment extends Fragment implements PageBar.onPageItemClickListener, GridAdapter.OnItemClickListener {
@@ -65,7 +65,7 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_second, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_comic_list, container, false);
         ButterKnife.inject(this, rootView);
         manger = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv_second_list.setLayoutManager(manger);

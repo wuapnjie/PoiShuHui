@@ -4,7 +4,6 @@ package com.flying.xiaopo.poishuhui.Views.Activities;
  */
 
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -18,9 +17,10 @@ import android.view.ViewGroup;
 
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
-import com.flying.xiaopo.poishuhui.Views.Fragments.MainFragment;
-import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
 import com.flying.xiaopo.poishuhui.Views.Fragments.ComicBookListFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.ComicNewsFragment;
+import com.flying.xiaopo.poishuhui.Views.Fragments.MainFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     MainFragment mainFragment;
     ComicListFragment comicListFragment;
-    ComicBookListFragment comicBookListFragment, forthFragment;
+    ComicBookListFragment comicBookListFragment;
+    ComicNewsFragment comicNewsFragment;
 
     public static final int DEVICE_WIDTH;
     public static final int DEVICE_HEIGHT;
@@ -81,16 +82,15 @@ public class MainActivity extends AppCompatActivity {
         mainFragment = new MainFragment();
         comicListFragment = new ComicListFragment();
         comicBookListFragment = new ComicBookListFragment();
-        forthFragment = new ComicBookListFragment();
+        comicNewsFragment = new ComicNewsFragment();
 
         comicBookListFragment.setTaskURL(HtmlUtil.URL_COMIC_LIST);
-        forthFragment.setTaskURL(HtmlUtil.URL_SHARINKAN);
 
 
         pagers.add(mainFragment);
         pagers.add(comicListFragment);
         pagers.add(comicBookListFragment);
-        pagers.add(forthFragment);
+        pagers.add(comicNewsFragment);
     }
 
     public class MyViewPagerAdapter extends FragmentPagerAdapter {

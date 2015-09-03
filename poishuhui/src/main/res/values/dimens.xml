@@ -22,4 +22,8 @@
 
 	<dimen name="tab_height">48dp</dimen>
 	<dimen name="toolbar_height">56dp</dimen>
+
+	<dimen name="news_title_bar">50dp</dimen>
+	<dimen name="news_title_size">24sp</dimen>
+	<dimen name="news_title_more_size">16sp</dimen>
 </resources>
