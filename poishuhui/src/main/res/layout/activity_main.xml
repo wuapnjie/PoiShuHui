@@ -29,15 +29,15 @@
 			android:layout_height="@dimen/tab_height"
 			android:background="@color/tab_color"
 			android:clipToPadding="false"
-			app:tabTextColor="@color/tab_text_color"
-			app:tabMode="fixed"/>
+			app:tabMode="fixed"
+			app:tabTextColor="@color/tab_text_color"/>
 	</android.support.design.widget.AppBarLayout>
 
 	<android.support.v4.view.ViewPager
 		android:id="@+id/mViewpager"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
 		>
 
 	</android.support.v4.view.ViewPager>
@@ -47,5 +47,8 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|right"
 		android:layout_margin="16dp"
+		app:elevation="@dimen/fab_elevation"
+		app:fabSize="normal"
+		app:layout_anchor="@id/mViewpager"
 		app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

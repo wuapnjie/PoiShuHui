@@ -1,10 +1,10 @@
 package com.flying.xiaopo.poishuhui.Views.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.flying.xiaopo.poishuhui.Adapters.GridAdapter;
+import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlTask;
 import com.flying.xiaopo.poishuhui.Utils.Utils;
-import com.flying.xiaopo.poishuhui.Views.Activities.TextActivity;
 
 import java.util.List;
 
@@ -25,13 +25,17 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
+ * 漫画图书列表Fragment
  * Created by lenovo on 2015/8/20.
  */
-public class ComicBookListFragment extends Fragment implements GridAdapter.OnItemClickListener {
+public class ComicBookListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, OnCellClickListener {
     public static final String INTENT_KEY = "torv";
 
     @InjectView(R.id.rv_third_list)
     RecyclerView rv_third_list;
+
+    @InjectView(R.id.refresh_booklist)
+    SwipeRefreshLayout refresh_booklist;
 
     GridLayoutManager manager;
 
@@ -65,7 +69,10 @@ public class ComicBookListFragment extends Fragment implements GridAdapter.OnIte
         rv_third_list.setLayoutManager(manager);
         rv_third_list.setAdapter(adapter);
 
-        if (taskURL != null) startLoad(taskURL);
+        refresh_booklist.setOnRefreshListener(this);
+        refresh_booklist.setRefreshing(true);
+
+        onRefresh();
 
         return rootView;
     }
@@ -85,17 +92,22 @@ public class ComicBookListFragment extends Fragment implements GridAdapter.OnIte
                 super.onPostExecute(baseBeans);
                 adapter.obtainData(baseBeans);
                 adapter.notifyDataSetChanged();
-                adapter.setOnItemClickListener(ComicBookListFragment.this);
+                adapter.setOnCellClickListener(ComicBookListFragment.this);
+                refresh_booklist.setRefreshing(false);
             }
         };
         task.execute(URL, HtmlTask.TASK_LIST);
     }
 
+
     @Override
-    public void onItemClick(View view, int position) {
-        Intent intent = new Intent();
-        intent.putExtra(INTENT_KEY, adapter.getData().get(position).getLink());
-        intent.setClass(context, TextActivity.class);
-        startActivity(intent);
+    public void onRefresh() {
+        if (taskURL != null) startLoad(taskURL);
+    }
+
+    //TODO
+    @Override
+    public void onCellClick(View view, int position) {
+
     }
 }

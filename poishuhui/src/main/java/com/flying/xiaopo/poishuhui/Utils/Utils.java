@@ -1,9 +1,9 @@
 package com.flying.xiaopo.poishuhui.Utils;
 
-import android.content.Context;
 import android.content.res.Resources;
 
 /**
+ * 工具类
  * Created by lenovo on 2015/8/19.
  */
 public class Utils {

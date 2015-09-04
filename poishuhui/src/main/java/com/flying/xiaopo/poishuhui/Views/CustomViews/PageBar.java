@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * ×Ô¶¨Òåpagebar
+ * é¡µé¢é€‰æ‹©å™¨
  * Created by lenovo on 2015/8/19.
  */
 public class PageBar extends FrameLayout implements View.OnClickListener {

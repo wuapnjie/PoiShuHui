@@ -28,6 +28,7 @@ import butterknife.InjectView;
 import uk.co.senab.photoview.PhotoView;
 
 /**
+ * 看漫画的Activity
  * Created by lenovo on 2015/8/20.
  */
 public class ComicActivity extends AppCompatActivity {

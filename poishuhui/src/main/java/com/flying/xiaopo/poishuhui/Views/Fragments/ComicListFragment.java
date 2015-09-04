@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.flying.xiaopo.poishuhui.Adapters.GridAdapter;
+import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
 import com.flying.xiaopo.poishuhui.Adapters.StaggeredAdapter;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
@@ -27,10 +29,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * �ٲ�����������
+ * 在线漫画列表Fragment
  * Created by lenovo on 2015/8/19.
  */
-public class ComicListFragment extends Fragment implements PageBar.onPageItemClickListener, GridAdapter.OnItemClickListener {
+public class ComicListFragment extends Fragment implements PageBar.onPageItemClickListener, SwipeRefreshLayout.OnRefreshListener, OnCellClickListener {
     public static final String INTENT_KEY_LINK = "link";
 
     @InjectView(R.id.rv_second_list)
@@ -38,6 +40,9 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
 
     @InjectView(R.id.pagebar)
     PageBar pageBar;
+
+    @InjectView(R.id.refresh_comic_list)
+    SwipeRefreshLayout refresh_comic_list;
 
     StaggeredGridLayoutManager manger;
 
@@ -72,7 +77,12 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
         rv_second_list.setAdapter(adapter);
         pageBar.setPrefixURL(HtmlUtil.URL_COMIC_PREFIX);
         pageBar.setOnPageItemClickListener(this);
-        startLoad(HtmlUtil.URL_COMIC);
+
+        refresh_comic_list.setOnRefreshListener(this);
+        refresh_comic_list.setRefreshing(true);
+
+        onRefresh();
+
         return rootView;
     }
 
@@ -83,7 +93,8 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
                 super.onPostExecute(baseBeans);
                 adapter.obtainData(baseBeans);
                 adapter.notifyDataSetChanged();
-                adapter.setOnItemClickListener(ComicListFragment.this);
+                adapter.setOnCellClickListener(ComicListFragment.this);
+                refresh_comic_list.setRefreshing(false);
                 //rv_second_list.setAdapter(adapter);
             }
         };
@@ -99,10 +110,15 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
     }
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onRefresh() {
+        startLoad(HtmlUtil.URL_COMIC);
+    }
+
+    @Override
+    public void onCellClick(View view, int position) {
         Intent intent = new Intent();
-        intent.putExtra(INTENT_KEY_LINK,adapter.getData().get(position).getLink());
-        intent.setClass(context,ComicActivity.class);
+        intent.putExtra(INTENT_KEY_LINK, adapter.getData().get(position).getLink());
+        intent.setClass(context, ComicActivity.class);
         startActivity(intent);
     }
 }

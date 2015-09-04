@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ×Ô¶¨ÒåSlide
+ * Slide å®ç°å¤æ‚å•¦
  * Created by lenovo on 2015/8/14.
  */
 public class SlideLayout extends LinearLayout implements View.OnClickListener {
@@ -108,13 +108,13 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
     }
 
     /**
-     * »ñµÃÊı¾İÔ´²¢¼ÓÔØÍ¼Æ¬
+     * å¤–éƒ¨è·å–æ•°æ®
      *
      * @param data
      */
     public void obtainData(List<ItemBean> data) {
         if (data == null) {
-            Snackbar.make(this, "Ë¢ĞĞÊÔÒ»ÏÂ", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(this, "Please refresh", Snackbar.LENGTH_SHORT).show();
             return;
         }
         mData = data;
@@ -179,7 +179,7 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
     }
 
     /**
-     * Ìá¹©¶ÔÍâµã»÷½Ó¿Ú
+     * å¤–éƒ¨ç‚¹å‡»æ¥å£
      */
     public interface OnChildClickListenner {
         void onChildClick(View view);

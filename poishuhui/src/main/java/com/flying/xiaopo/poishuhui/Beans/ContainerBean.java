@@ -3,6 +3,7 @@ package com.flying.xiaopo.poishuhui.Beans;
 import java.util.List;
 
 /**
+ * news容器的bean
  * Created by lenovo on 2015/9/3.
  */
 public class ContainerBean {

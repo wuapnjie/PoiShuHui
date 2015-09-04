@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
+ * 线性布局的adapter
  * Created by lenovo on 2015/8/23.
  */
 public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.TextViewHolder> implements View.OnClickListener {

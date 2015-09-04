@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
+import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
+import com.flying.xiaopo.poishuhui.Utils.MyCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * 网格布局适配器
+ * 缃戞牸Adapter
  * Created by lenovo on 2015/8/14.
  */
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder> {
@@ -30,18 +34,24 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
 
     List<ItemBean> mData;
 
-    OnItemClickListener onItemClickListener;
 
+
+    OnCellClickListener onCellClickListener;
+
+    MyCache myCache;
+
+    RequestQueue mQueue;
 
     public GridAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         mData = new ArrayList<>();
+        mQueue = Volley.newRequestQueue(context);
+        myCache = new MyCache();
     }
 
     /**
-     * 提供获取数据的方法
-     *
+     * 锟结供锟斤拷取锟斤拷锟捷的凤拷锟斤拷
      */
     public void obtainData(List<ItemBean> data) {
         mData = data;
@@ -51,10 +61,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
         return mData;
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public void setOnCellClickListener(OnCellClickListener onCellClickListener) {
+        this.onCellClickListener = onCellClickListener;
     }
-
     @Override
     public CellViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.item, parent, false);
@@ -63,14 +72,22 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
 
     @Override
     public void onBindViewHolder(CellViewHolder holder, final int position) {
-        Glide.with(context).load(mData.get(position).getImageURL()).into(holder.iv_content);
+//        Glide.with(context).load(mData.get(position).getImageURL()).into(holder.iv_content);
+        String url = mData.get(position).getImageURL();
+        if (myCache.getBitmap(url) != null)
+            holder.iv_content.setImageBitmap(myCache.getBitmap(url));
+        else {
+            ImageLoader loader = new ImageLoader(mQueue, myCache);
+            ImageLoader.ImageListener listener = ImageLoader.getImageListener(holder.iv_content, R.color.default_color, R.mipmap.ic_launcher);
+            loader.get(url, listener, 200, 200);
+        }
         holder.tv_title.setText(mData.get(position).getTitle());
         //holder.iv_content.setTag(mData.get(position).getLink());
         holder.iv_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, mData.get(position).getLink(), Snackbar.LENGTH_SHORT).show();
-                if (onItemClickListener != null) onItemClickListener.onItemClick(v, position);
+                if (onCellClickListener != null) onCellClickListener.onCellClick(v, position);
             }
         });
     }
@@ -96,8 +113,5 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
         }
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
 
 }

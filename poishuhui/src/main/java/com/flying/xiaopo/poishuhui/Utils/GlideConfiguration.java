@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.GlideModule;
 
 /**
+ * Glide配置项
  * Created by lenovo on 2015/8/15.
  */
 public class GlideConfiguration implements GlideModule {

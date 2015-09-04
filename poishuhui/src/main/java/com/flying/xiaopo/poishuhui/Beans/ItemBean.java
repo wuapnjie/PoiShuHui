@@ -1,15 +1,15 @@
 package com.flying.xiaopo.poishuhui.Beans;
 
 /**
- * ²Ëµ¥£¬SlideµÄItemµÄJavaBean
+ * ä¸€äº›å›¾ç‰‡æ ‡é¢˜çš„Itemçš„Bean
  * Created by lenovo on 2015/8/14.
  */
 public class ItemBean {
-    //Í¼Æ¬µÄURL
+    //Í¼Æ¬ï¿½ï¿½URL
     private String imageURL;
-    //±êÌâ
+    //ï¿½ï¿½ï¿½ï¿½
     private String title;
-    //Í¼Æ¬Á´½Ó
+    //Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
     private String link;
 
     public ItemBean() {

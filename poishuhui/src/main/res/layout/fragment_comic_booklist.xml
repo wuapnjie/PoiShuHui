@@ -4,13 +4,18 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/rv_third_list"
-		android:layout_width="match_parent"
-		android:scrollbars="none"
-		android:layout_height="0dp"
-		android:layout_weight="1">
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/refresh_booklist"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
 
-	</android.support.v7.widget.RecyclerView>
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/rv_third_list"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:scrollbars="none">
 
+		</android.support.v7.widget.RecyclerView>
+	</android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

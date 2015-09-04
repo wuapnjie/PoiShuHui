@@ -1,6 +1,7 @@
 package com.flying.xiaopo.poishuhui.Beans;
 
 /**
+ * news的bean
  * Created by lenovo on 2015/9/3.
  */
 public class ChildItemBean {

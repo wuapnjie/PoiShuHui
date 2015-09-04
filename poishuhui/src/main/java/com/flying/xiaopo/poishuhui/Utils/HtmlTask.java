@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Html����Ĺ�����
+ * 网络异步任务类
  * Created by lenovo on 2015/8/14.
  */
 public class HtmlTask extends AsyncTask<String, Void, List<ItemBean>> {
