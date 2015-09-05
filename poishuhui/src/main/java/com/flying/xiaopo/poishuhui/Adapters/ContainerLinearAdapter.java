@@ -48,11 +48,11 @@ public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinear
         holder.tv_container_title.setText(container_data.get(position).getTitle());
         LinearLayoutManager manager = new LinearLayoutManager(context);
         ChildNewsAdapter adapter = new ChildNewsAdapter(context);
-        for (ChildItemBean bean : container_data.get(position).getChildDataList()) {
-            System.out.println(bean.getLink());
-            System.out.println(bean.getChildTitle());
-            System.out.println(bean.getCreatedTime());
-        }
+//        for (ChildItemBean bean : container_data.get(position).getChildDataList()) {
+//            System.out.println(bean.getLink());
+//            System.out.println(bean.getChildTitle());
+//            System.out.println(bean.getCreatedTime());
+//        }
         holder.rv_child_container.setAdapter(adapter);
         holder.rv_child_container.setLayoutManager(manager);
         adapter.obtainData(container_data.get(position).getChildDataList());

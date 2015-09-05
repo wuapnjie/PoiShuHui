@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.MyCache;
+import com.flying.xiaopo.poishuhui.Utils.VolleyUtils.BitmapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +50,9 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
 
     Handler handler;
 
-    MyCache myCache;
+    //MyCache myCache;
 
-    RequestQueue mQueue;
+    //RequestQueue mQueue;
 
     public SlideLayout(Context context) {
         super(context);
@@ -65,8 +66,8 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
         super(context, attrs);
         setOrientation(HORIZONTAL);
         init();
-        myCache = new MyCache();
-        mQueue = Volley.newRequestQueue(context);
+        //myCache = new MyCache();
+        //mQueue = Volley.newRequestQueue(context);
     }
 
     private void init() {
@@ -121,14 +122,16 @@ public class SlideLayout extends LinearLayout implements View.OnClickListener {
         if (data.size() == 0) return;
         for (int i = 0; i < 5; i++) {
             String iv_url = data.get(i).getImageURL();
-            if (myCache.getBitmap(iv_url) != null) {
-                iv_content[i].setImageBitmap(myCache.getBitmap(iv_url));
-                continue;
-            }
             ItemBean bean = data.get(i);
-            ImageLoader loader = new ImageLoader(mQueue, myCache);
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(iv_content[i], R.color.default_color, R.mipmap.ic_launcher);
-            loader.get(iv_url, listener, 200, 200);
+            BitmapHelper.load2ImageView(getContext().getApplicationContext(),iv_content[i],iv_url,200,200,null);
+//            if (myCache.getBitmap(iv_url) != null) {
+//                iv_content[i].setImageBitmap(myCache.getBitmap(iv_url));
+//                continue;
+//            }
+//            ItemBean bean = data.get(i);
+//            ImageLoader loader = new ImageLoader(mQueue, myCache);
+//            ImageLoader.ImageListener listener = ImageLoader.getImageListener(iv_content[i], R.color.default_color, R.mipmap.ic_launcher);
+//            loader.get(iv_url, listener, 200, 200);
             tv_title[i].setText(bean.getTitle());
         }
     }

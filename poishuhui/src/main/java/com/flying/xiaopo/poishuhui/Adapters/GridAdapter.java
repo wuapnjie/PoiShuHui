@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.MyCache;
+import com.flying.xiaopo.poishuhui.Utils.VolleyUtils.BitmapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +35,18 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
     List<ItemBean> mData;
 
 
-
     OnCellClickListener onCellClickListener;
 
-    MyCache myCache;
+    //MyCache myCache;
 
-    RequestQueue mQueue;
+    //RequestQueue mQueue;
 
     public GridAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         mData = new ArrayList<>();
-        mQueue = Volley.newRequestQueue(context);
-        myCache = new MyCache();
+        //mQueue = Volley.newRequestQueue(context);
+        //myCache = new MyCache();
     }
 
     /**
@@ -64,6 +63,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
     public void setOnCellClickListener(OnCellClickListener onCellClickListener) {
         this.onCellClickListener = onCellClickListener;
     }
+
     @Override
     public CellViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.item, parent, false);
@@ -74,13 +74,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
     public void onBindViewHolder(CellViewHolder holder, final int position) {
 //        Glide.with(context).load(mData.get(position).getImageURL()).into(holder.iv_content);
         String url = mData.get(position).getImageURL();
-        if (myCache.getBitmap(url) != null)
-            holder.iv_content.setImageBitmap(myCache.getBitmap(url));
-        else {
-            ImageLoader loader = new ImageLoader(mQueue, myCache);
-            ImageLoader.ImageListener listener = ImageLoader.getImageListener(holder.iv_content, R.color.default_color, R.mipmap.ic_launcher);
-            loader.get(url, listener, 200, 200);
-        }
+//        if (myCache.getBitmap(url) != null)
+//            holder.iv_content.setImageBitmap(myCache.getBitmap(url));
+//        else {
+//            ImageLoader loader = new ImageLoader(mQueue, myCache);
+//            ImageLoader.ImageListener listener = ImageLoader.getImageListener(holder.iv_content, R.color.default_color, R.mipmap.ic_launcher);
+//            loader.get(url, listener, 200, 200);
+//        }
+
+        BitmapHelper.load2ImageView(context.getApplicationContext(), holder.iv_content, url, 200, 200,null);
+
         holder.tv_title.setText(mData.get(position).getTitle());
         //holder.iv_content.setTag(mData.get(position).getLink());
         holder.iv_content.setOnClickListener(new View.OnClickListener() {

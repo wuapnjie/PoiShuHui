@@ -1,9 +1,13 @@
 package com.flying.xiaopo.volleytest;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -29,6 +33,8 @@ public class MainActivity extends ActionBarActivity {
     Button btn_sendrequest;
     @InjectView(R.id.tv_html)
     TextView tv_html;
+    @InjectView(R.id.et_action)
+    EditText et_action;
     RequestQueue mQueue;
 
     @Override
@@ -43,9 +49,18 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.btn_sendrequest)
     public void sendRequest() {
-        MyTask task = new MyTask();
-        task.execute("http://ishuhui.net/CMS/");
-        System.out.println("click");
+//        MyTask task = new MyTask();
+//        task.execute("http://ishuhui.net/CMS/");
+//        System.out.println("click");
+//        if (!et_action.getText().equals("")) {
+            Intent intent = new Intent("android.settings.SYNC_SETTINGS");
+            startActivity(intent);
+//        }
+//        Intent i = new Intent(Intent.ACTION_MAIN);
+//        ComponentName cn = new ComponentName("com.android.settings", "com.android.settings.SubSettings");
+//        i.setComponent(cn);
+//        i.putExtra(Settings.EXTRA_ACCOUNT_TYPES,)
+//        startActivity(i);
     }
 
 

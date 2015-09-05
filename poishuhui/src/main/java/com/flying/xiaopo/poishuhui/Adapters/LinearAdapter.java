@@ -15,6 +15,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.R;
+import com.flying.xiaopo.poishuhui.Utils.VolleyUtils.BitmapHelper;
 import com.flying.xiaopo.poishuhui.Views.Activities.MainActivity;
 
 import java.util.List;
@@ -63,13 +64,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.TextViewHo
             holder.iv_image.setVisibility(View.VISIBLE);
             holder.iv_image.setOnClickListener(this);
 
-            if (mCache.getBitmap(comicBean.getPicURL()) != null) {
-                holder.iv_image.setImageBitmap(mCache.getBitmap(comicBean.getPicURL()));
-            } else {
-                ImageLoader.ImageListener listener = ImageLoader.getImageListener(holder.iv_image, R.color.default_color, R.mipmap.ic_launcher);
-                ImageLoader loader = new ImageLoader(mQueue, mCache);
-                loader.get(comicBean.getPicURL(), listener, MainActivity.DEVICE_WIDTH, MainActivity.DEVICE_HEIGHT);
-            }
+            BitmapHelper.load2ImageView(context.getApplicationContext(), holder.iv_image, comicBean.getPicURL(), 200, 200,null);
 
         } else if (!comicBean.getText().equals("")) {
             holder.iv_image.setVisibility(View.GONE);
