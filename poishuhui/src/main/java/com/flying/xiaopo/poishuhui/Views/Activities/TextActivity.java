@@ -77,5 +77,4 @@ public class TextActivity extends AppCompatActivity {
         }
     }
 
-
 }

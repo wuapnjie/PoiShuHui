@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 网络异步任务类
- * Created by lenovo on 2015/8/14.
+ * Created by xiaopo on 2015/8/14.
  */
 public class HtmlTask extends AsyncTask<String, Void, List<ItemBean>> {
     public static final String TASK_SLIDE = "slide";

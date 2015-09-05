@@ -9,7 +9,7 @@ import com.flying.xiaopo.poishuhui.BuildConfig;
 
 /**
  * 单例的内存缓存类
- * Created by lenovo on 2015/9/5.
+ * Created by xiaopo on 2015/9/5.
  */
 public class SMemoryLruCache extends LruCache<String, Bitmap> implements ImageLoader.ImageCache {
     private final String TAG = this.getClass().getSimpleName();
@@ -24,7 +24,7 @@ public class SMemoryLruCache extends LruCache<String, Bitmap> implements ImageLo
         super(maxSize);
     }
 
-    public static SMemoryLruCache getInstance() {
+    public static synchronized SMemoryLruCache getInstance() {
         if (mInstance == null) {
             int maxMem = (int) Runtime.getRuntime().maxMemory();
             mInstance = new SMemoryLruCache(maxMem / 8);

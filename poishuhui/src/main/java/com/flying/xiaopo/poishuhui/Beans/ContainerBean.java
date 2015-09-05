@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * news容器的bean
- * Created by lenovo on 2015/9/3.
+ * Created by xiaopo on 2015/9/3.
  */
 public class ContainerBean {
     private String title;      //container's title;

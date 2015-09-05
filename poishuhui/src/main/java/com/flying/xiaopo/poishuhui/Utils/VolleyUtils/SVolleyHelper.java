@@ -8,7 +8,7 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * 单例的RequestQueue类
- * Created by lenovo on 2015/9/5.
+ * Created by xiaopo on 2015/9/5.
  */
 public class SVolleyHelper {
     private static Context mCtx;

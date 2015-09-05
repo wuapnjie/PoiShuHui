@@ -12,12 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
-import com.flying.xiaopo.poishuhui.Utils.MyCache;
 import com.flying.xiaopo.poishuhui.Utils.VolleyUtils.BitmapHelper;
 
 import java.util.ArrayList;

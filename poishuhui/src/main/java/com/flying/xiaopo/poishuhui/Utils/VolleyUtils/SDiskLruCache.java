@@ -21,16 +21,17 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by lenovo on 2015/9/5.
+ * 磁盘缓存DiskLruCache的单例类
+ * Created by xiaopo on 2015/9/5.
  */
 public class SDiskLruCache {
     private static Context mCtx;
     private static SDiskLruCache mInstance;
     private DiskLruCache mDiskLruCache;
-    private Bitmap.CompressFormat mCompressFormat = Bitmap.CompressFormat.JPEG;
-    private static int IO_BUFFER_SIZE = 8 * 1024;
-    private int mCompressQuality = 70;
-    private static final int BUFFER_SIZE = 10 * 1024 * 1024;
+    private Bitmap.CompressFormat mCompressFormat = Bitmap.CompressFormat.JPEG;     //图片缓存的压缩模式
+    private static int IO_BUFFER_SIZE = 8 * 1024;            //IO操作的缓存大小
+    private int mCompressQuality = 70;                      //图片压缩质量
+    private static final int BUFFER_SIZE = 10 * 1024 * 1024;      //磁盘缓存大小
     private static final int VALUE_COUNT = 1;
 
     private SDiskLruCache(Context context) {
@@ -52,6 +53,7 @@ public class SDiskLruCache {
         return mInstance;
     }
 
+    //提供外部的缓存写入方法
     public void putBitmap(String url, Bitmap bitmap) {
         DiskLruCache.Editor editor = null;
         String cacheUrl = hashKeyForDisk(url);
@@ -84,6 +86,7 @@ public class SDiskLruCache {
         }
     }
 
+    //内部实现的写入方法
     private boolean writeBitmapToFile(Bitmap bitmap, DiskLruCache.Editor editor) throws IOException {
         OutputStream out = null;
         try {
@@ -95,6 +98,7 @@ public class SDiskLruCache {
 
     }
 
+    //提供外部的缓存图片获取方法
     public Bitmap getBitmap(String url) {
         Bitmap bitmap = null;
         String cacheUrl = hashKeyForDisk(url);
@@ -115,7 +119,7 @@ public class SDiskLruCache {
         return bitmap;
     }
 
-
+    //获取应用的版本号
     private int getAppVersion() {
         try {
             PackageInfo info = mCtx.getPackageManager().getPackageInfo(mCtx.getPackageName(), 0);
@@ -126,6 +130,7 @@ public class SDiskLruCache {
         return 1;
     }
 
+    //获取缓存的位置
     private File getDiskCacheDir(String uniqName) {
         String cacheDir;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
@@ -134,10 +139,8 @@ public class SDiskLruCache {
         return new File(cacheDir + File.separator + uniqName);
     }
 
-    public void seCompressQuality(int mCompressQuality) {
-        this.mCompressQuality = mCompressQuality;
-    }
 
+    //用MD5编码图片URL，返回可以作为DiskLruCache的key
     public String hashKeyForDisk(String url) {
         String cacheUrl;
         try {
@@ -151,6 +154,7 @@ public class SDiskLruCache {
         return cacheUrl;
     }
 
+    //字节转化字符串
     private String bytes2HexString(byte[] bytes) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < bytes.length; i++) {

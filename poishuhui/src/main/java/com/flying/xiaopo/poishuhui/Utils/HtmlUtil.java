@@ -104,7 +104,11 @@ public class HtmlUtil {
         return list;
     }
 
-
+    /**
+     * 获取漫画内容
+     * @param url
+     * @return
+     */
     public static List<ComicBean> obtainComicContent(String url) {
         Document document = obtainDocument(url);
         List<ComicBean> list = new ArrayList<>();
@@ -124,6 +128,11 @@ public class HtmlUtil {
         return list;
     }
 
+    /**
+     * 获取动漫资讯中的内容
+     * @param url
+     * @return
+     */
     public static List<ContainerBean> obtainContainer(String url) {
         Document document = obtainDocument(url);
         List<ContainerBean> list = new ArrayList<>();

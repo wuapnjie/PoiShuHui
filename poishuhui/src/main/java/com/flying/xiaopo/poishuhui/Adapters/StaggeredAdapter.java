@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * 瀑布流的adapter
- * Created by lenovo on 2015/8/19.
+ * Created by xiaopo on 2015/8/19.
  */
 public class StaggeredAdapter extends GridAdapter {
     List<Integer> heights;

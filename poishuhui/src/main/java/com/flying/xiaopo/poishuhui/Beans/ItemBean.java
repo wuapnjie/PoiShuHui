@@ -2,14 +2,11 @@ package com.flying.xiaopo.poishuhui.Beans;
 
 /**
  * 一些图片标题的Item的Bean
- * Created by lenovo on 2015/8/14.
+ * Created by xiaopo on 2015/8/14.
  */
 public class ItemBean {
-    //ͼƬ��URL
     private String imageURL;
-    //����
     private String title;
-    //ͼƬ����
     private String link;
 
     public ItemBean() {

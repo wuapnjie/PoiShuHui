@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * news的adapter
- * Created by lenovo on 2015/9/3.
+ * 第4个Fragment的news的adapter
+ * Created by xiaopo on 2015/9/3.
  */
 public class ChildNewsAdapter extends RecyclerView.Adapter<ChildNewsAdapter.ChildViewHolder> {
     private LayoutInflater inflater;

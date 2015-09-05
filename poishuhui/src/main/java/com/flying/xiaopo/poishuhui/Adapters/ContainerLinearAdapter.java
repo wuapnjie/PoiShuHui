@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * 第四个Fragment的Adapter
- * Created by lenovo on 2015/9/3.
+ * 第四个Fragment的news容器Adapter
+ * Created by xiaopo on 2015/9/3.
  */
 public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinearAdapter.NewsContainerViewHolder> {
     private List<ContainerBean> container_data;

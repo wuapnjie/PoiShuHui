@@ -9,12 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
-import com.flying.xiaopo.poishuhui.Utils.MyCache;
 import com.flying.xiaopo.poishuhui.Utils.VolleyUtils.BitmapHelper;
 
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ import butterknife.InjectView;
 
 /**
  * 网格Adapter
- * Created by lenovo on 2015/8/14.
+ * Created by xiaopo on 2015/8/14.
  */
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder> {
     Context context;
@@ -50,7 +47,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
     }
 
     /**
-     * �ṩ��ȡ���ݵķ���
+     * 提供外部获取数据的方法
      */
     public void obtainData(List<ItemBean> data) {
         mData = data;
@@ -115,6 +112,4 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
             return tv_title;
         }
     }
-
-
 }

@@ -2,7 +2,7 @@ package com.flying.xiaopo.poishuhui.Beans;
 
 /**
  * 漫画内容的bean
- * Created by lenovo on 2015/8/20.
+ * Created by xiaopo on 2015/8/20.
  */
 public class ComicBean{
     private String text;
