@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
+ * PageAdapter
  * Created by lenovo on 2015/9/6.
  */
 public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder> {
