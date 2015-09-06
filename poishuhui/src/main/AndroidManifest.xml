@@ -29,6 +29,11 @@
 		<activity
 			android:name=".Views.Activities.TextActivity"
 			android:theme="@style/AppTheme2"></activity>
+		<activity
+			android:name=".Views.Activities.ComicDetailActivity"
+			android:theme="@style/AppTheme2">
+		</activity>
 	</application>
+
 
 </manifest>

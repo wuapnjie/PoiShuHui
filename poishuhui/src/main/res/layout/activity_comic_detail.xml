@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/default_background"
+              android:orientation="vertical">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar_detail"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/toolbar_height"
+		android:background="@color/toolbar_color"
+		></android.support.v7.widget.Toolbar>
+
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_margin="@dimen/card_margin"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:id="@+id/iv_detail"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:scaleType="centerCrop"
+				android:src="@mipmap/ic_launcher"/>
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="8dp"
+				android:layout_weight="1"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/tv_detail_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Title"
+					android:textColor="@color/title_textcolor"
+					android:textSize="@dimen/detail_title_size"/>
+
+				<TextView
+					android:id="@+id/tv_detail_time"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Time"
+					android:textColor="@color/title_textcolor"
+					android:textSize="@dimen/detail_time_size"/>
+
+				<TextView
+					android:id="@+id/tv_detail_intro"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="intro"
+					android:textColor="@color/title_textcolor"
+					android:textSize="@dimen/detail_intro_size"/>
+			</LinearLayout>
+		</LinearLayout>
+	</android.support.v7.widget.CardView>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/rv_detail"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_margin="@dimen/card_margin"
+		android:layout_weight="2">
+
+	</android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

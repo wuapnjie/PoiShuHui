@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
-import com.flying.xiaopo.poishuhui.BuildConfig;
 import com.jakewharton.disklrucache.DiskLruCache;
 
 import java.io.BufferedInputStream;
@@ -63,20 +62,20 @@ public class SDiskLruCache {
             if (writeBitmapToFile(bitmap, editor)) {
                 mDiskLruCache.flush();
                 editor.commit();
-                if (BuildConfig.DEBUG) {
-                    Log.d("cache_test_DISK_", "image put on disk cache " + url);
-                }
+
+                Log.v("cache_test_DISK_", "image put on disk cache " + url);
+
             } else {
                 editor.abort();
-                if (BuildConfig.DEBUG) {
-                    Log.d("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
-                }
+
+                Log.v("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
-            if (BuildConfig.DEBUG) {
-                Log.d("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
-            }
+
+            Log.v("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
+
             try {
                 if (editor != null) {
                     editor.abort();

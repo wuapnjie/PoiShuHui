@@ -1,6 +1,7 @@
 package com.flying.xiaopo.poishuhui.Views.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import com.flying.xiaopo.poishuhui.Beans.ItemBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlTask;
 import com.flying.xiaopo.poishuhui.Utils.Utils;
+import com.flying.xiaopo.poishuhui.Views.Activities.ComicDetailActivity;
 
 import java.util.List;
 
@@ -108,6 +110,9 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
     //TODO
     @Override
     public void onCellClick(View view, int position) {
-
+        Intent intent = new Intent();
+        intent.putExtra(INTENT_KEY, adapter.getData().get(position).getLink());
+        intent.setClass(context, ComicDetailActivity.class);
+        startActivity(intent);
     }
 }
