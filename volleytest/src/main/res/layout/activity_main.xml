@@ -9,11 +9,6 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context=".MainActivity">
 
-	<EditText
-		android:id="@+id/et_action"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:hint="Action"/>
 
 	<Button
 		android:id="@+id/btn_sendrequest"

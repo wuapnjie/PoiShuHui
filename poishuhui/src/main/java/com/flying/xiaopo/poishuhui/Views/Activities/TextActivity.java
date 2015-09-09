@@ -38,7 +38,7 @@ public class TextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
         ButterKnife.inject(this);
-        aimURL = getIntent().getStringExtra(ComicBookListFragment.INTENT_KEY);
+        aimURL = getIntent().getStringExtra(ComicBookListFragment.INTENT_KEY_LIMK);
         init();
         obtainTORV(aimURL);
     }

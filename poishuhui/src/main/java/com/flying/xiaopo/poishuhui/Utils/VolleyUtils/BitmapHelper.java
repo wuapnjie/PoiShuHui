@@ -58,14 +58,16 @@ public class BitmapHelper {
                     if (imageContainer.getBitmap() != null) {
                         imageView.setImageBitmap(imageContainer.getBitmap());
                         mDiskLruCache.putBitmap(url, imageContainer.getBitmap());
-                        onLoadFinishedListener.onLoadSuccessed();
+                        if (onLoadFinishedListener != null)
+                            onLoadFinishedListener.onLoadSuccessed();
                     }
                 }
 
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
                     imageView.setImageResource(R.mipmap.ic_launcher);
-                    onLoadFinishedListener.onLoadFailed();
+                    if (onLoadFinishedListener != null)
+                        onLoadFinishedListener.onLoadSuccessed();
                 }
             };
             loader.get(url, listener, width, height);

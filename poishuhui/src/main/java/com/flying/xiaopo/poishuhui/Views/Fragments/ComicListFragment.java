@@ -111,7 +111,7 @@ public class ComicListFragment extends Fragment implements PageBar.onPageItemCli
 
     @Override
     public void onRefresh() {
-        startLoad(HtmlUtil.URL_COMIC);
+        startLoad(pageBar.getPrefixURL() + currentPage);
     }
 
     @Override

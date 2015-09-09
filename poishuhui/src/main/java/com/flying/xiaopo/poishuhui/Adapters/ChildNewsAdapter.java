@@ -35,6 +35,10 @@ public class ChildNewsAdapter extends RecyclerView.Adapter<ChildNewsAdapter.Chil
         this.child_data = child_data;
     }
 
+    public List<ChildItemBean> getData() {
+        return child_data;
+    }
+
     @Override
     public ChildViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.childnewsitem, parent, false);

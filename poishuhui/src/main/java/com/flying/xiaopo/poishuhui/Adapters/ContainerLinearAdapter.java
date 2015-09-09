@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.flying.xiaopo.poishuhui.Beans.ChildItemBean;
 import com.flying.xiaopo.poishuhui.Beans.ContainerBean;
 import com.flying.xiaopo.poishuhui.R;
 
@@ -22,6 +21,8 @@ import butterknife.InjectView;
  * Created by xiaopo on 2015/9/3.
  */
 public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinearAdapter.NewsContainerViewHolder> {
+
+
     private List<ContainerBean> container_data;
 
     private Context context;
@@ -35,6 +36,10 @@ public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinear
 
     public void obtainData(List<ContainerBean> data) {
         container_data = data;
+    }
+
+    public List<ContainerBean> getData() {
+        return container_data;
     }
 
     @Override

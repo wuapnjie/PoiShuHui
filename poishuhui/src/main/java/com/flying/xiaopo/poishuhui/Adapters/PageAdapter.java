@@ -22,12 +22,19 @@ import butterknife.InjectView;
  */
 public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder> {
     private LayoutInflater inflater;
+
+
+
     private List<PageBean> datas;
 
     OnCellClickListener onCellClickListener;
 
     public PageAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+    }
+
+    public List<PageBean> getDatas() {
+        return datas;
     }
 
     public void setOnCellClickListener(OnCellClickListener onCellClickListener) {
@@ -47,19 +54,18 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder
 
     @Override
     public void onBindViewHolder(PageViewHolder holder, final int position) {
-//        holder.tv_page.setText(datas.get(position).getText());
-//        holder.tv_page.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onCellClickListener != null) onCellClickListener.onCellClick(v, position);
-//            }
-//        });
+        holder.tv_page.setText(datas.get(position).getText());
+        holder.tv_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onCellClickListener != null) onCellClickListener.onCellClick(v, position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-//        return datas == null ? 0 : datas.size();
-        return 20;
+        return datas == null ? 0 : datas.size();
     }
 
 

@@ -53,6 +53,14 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
         init();
     }
 
+    private void init() {
+        context = getActivity();
+        data_slide = new ArrayList<>();
+        data_list = new ArrayList<>();
+        layoutManager = new GridLayoutManager(context, 2);
+        adapter = new GridAdapter(context);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,13 +75,6 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
         return rootView;
     }
 
-    private void init() {
-        context = getActivity();
-        data_slide = new ArrayList<>();
-        data_list = new ArrayList<>();
-        layoutManager = new GridLayoutManager(context, 2);
-        adapter = new GridAdapter(context);
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -113,7 +114,7 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
 //            String link = data_slide.get((int) view.getTag()).getLink();
 //            Snackbar.make(view, link, Snackbar.LENGTH_SHORT).show();
             Intent intent = new Intent();
-            intent.putExtra(ComicListFragment.INTENT_KEY_LINK,  data_slide.get((int) view.getTag()).getLink());
+            intent.putExtra(ComicListFragment.INTENT_KEY_LINK, data_slide.get((int) view.getTag()).getLink());
             intent.setClass(context, ComicActivity.class);
             startActivity(intent);
         }
@@ -123,6 +124,7 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
     public void onRefresh() {
         refresh_main.setRefreshing(true);
         startLoad();
+
     }
 
     @Override

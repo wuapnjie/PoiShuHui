@@ -21,6 +21,7 @@ import com.flying.xiaopo.poishuhui.Utils.HtmlTask;
 import com.flying.xiaopo.poishuhui.Utils.Utils;
 import com.flying.xiaopo.poishuhui.Views.Activities.ComicDetailActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -31,7 +32,9 @@ import butterknife.InjectView;
  * Created by lenovo on 2015/8/20.
  */
 public class ComicBookListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, OnCellClickListener {
-    public static final String INTENT_KEY = "torv";
+    public static final String INTENT_KEY_URL = "url";
+    public static final String INTENT_KEY_TITLE = "title";
+    public static final String INTENT_KEY_LIMK = "link";
 
     @InjectView(R.id.rv_third_list)
     RecyclerView rv_third_list;
@@ -47,6 +50,8 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
 
     Context context;
 
+    List<ItemBean> list_data;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,7 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
                 holder.getTv_title().setTextSize(20.0f);
             }
         };
+        list_data = new ArrayList<>();
     }
 
     @Nullable
@@ -73,7 +79,6 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
 
         refresh_booklist.setOnRefreshListener(this);
         refresh_booklist.setRefreshing(true);
-
         onRefresh();
 
         return rootView;
@@ -111,7 +116,14 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
     @Override
     public void onCellClick(View view, int position) {
         Intent intent = new Intent();
-        intent.putExtra(INTENT_KEY, adapter.getData().get(position).getLink());
+        Bundle bundle = new Bundle();
+
+        ItemBean bean = adapter.getData().get(position);
+        bundle.putString(INTENT_KEY_TITLE, bean.getTitle());
+        bundle.putString(INTENT_KEY_URL, bean.getImageURL());
+        bundle.putString(INTENT_KEY_LIMK, bean.getLink());
+
+        intent.putExtras(bundle);
         intent.setClass(context, ComicDetailActivity.class);
         startActivity(intent);
     }

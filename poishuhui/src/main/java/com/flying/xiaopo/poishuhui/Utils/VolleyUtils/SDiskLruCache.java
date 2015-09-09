@@ -109,6 +109,7 @@ public class SDiskLruCache {
             if (in != null) {
                 final BufferedInputStream bufferedInputStream = new BufferedInputStream(in, IO_BUFFER_SIZE);
                 bitmap = BitmapFactory.decodeStream(bufferedInputStream);
+                Log.v("cache_test_DISK_", "image get from disk cache " + url);
             }
         } catch (IOException e) {
             e.printStackTrace();

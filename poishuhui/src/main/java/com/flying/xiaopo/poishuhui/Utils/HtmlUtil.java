@@ -4,6 +4,7 @@ import com.flying.xiaopo.poishuhui.Beans.ChildItemBean;
 import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.Beans.ContainerBean;
 import com.flying.xiaopo.poishuhui.Beans.ItemBean;
+import com.flying.xiaopo.poishuhui.Beans.PageBean;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -95,7 +96,9 @@ public class HtmlUtil {
         for (Element element : elements) {
 
             ItemBean bean = new ItemBean();
-            bean.setImageURL(element.select("img").attr("src"));
+            if (element.select("img").attr("src").contains("http"))
+                bean.setImageURL(element.select("img").attr("src"));
+            else bean.setImageURL("http://ishuhui.net" + element.select("img").attr("src"));
             bean.setTitle(element.select("p").text());
             bean.setLink("http://ishuhui.net" + element.select("div.chinaMangaContentImg").select("a").attr("href"));
 
@@ -106,6 +109,7 @@ public class HtmlUtil {
 
     /**
      * 获取漫画内容
+     *
      * @param url
      * @return
      */
@@ -130,6 +134,7 @@ public class HtmlUtil {
 
     /**
      * 获取动漫资讯中的内容
+     *
      * @param url
      * @return
      */
@@ -159,4 +164,27 @@ public class HtmlUtil {
         }
         return list;
     }
+
+    /**
+     * 获取动漫详情中的页码内容
+     *
+     * @param url
+     * @return
+     */
+    public static List<PageBean> obtainPageList(String url) {
+        Document document = obtainDocument(url);
+
+        if (document == null) return null;
+        List<PageBean> list = new ArrayList<>();
+        Elements elements = document.select("div.volumeControl").select("a");
+
+        for (Element element : elements) {
+            PageBean bean = new PageBean();
+            bean.setText(element.text());
+            bean.setLink("http://ishuhui.net/" + element.attr("href"));
+            list.add(bean);
+        }
+        return list;
+    }
+
 }

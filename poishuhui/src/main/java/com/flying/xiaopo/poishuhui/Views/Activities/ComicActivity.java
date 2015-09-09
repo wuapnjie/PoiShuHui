@@ -163,9 +163,6 @@ public class ComicActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * �ڴ����ʱ����
-     */
     @Override
     public void onBackPressed() {
         finish();

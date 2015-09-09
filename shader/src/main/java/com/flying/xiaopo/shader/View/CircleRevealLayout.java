@@ -48,7 +48,6 @@ public class CircleRevealLayout extends LinearLayout {
 
     private Paint fillPaint;
 
-
     private int currentRadius;
     private int startLocationX;
     private int startLocationY;
@@ -66,7 +65,7 @@ public class CircleRevealLayout extends LinearLayout {
         changeState(STATE_FILL_START);
         startLocationX = location[0];
         startLocationY = location[1];
-        revealAnimator = ObjectAnimator.ofInt(this, "currentRadius", 0, getWidth() + getHeight()).setDuration(400);
+        revealAnimator = ObjectAnimator.ofInt(this, "currentRadius", 0, getWidth() + getHeight()).setDuration(4000);
         Log.d("VIEW",getWidth()+getHeight()+"width+height");
         revealAnimator.setInterpolator(INTERPOLATOR);
         revealAnimator.addListener(new AnimatorListenerAdapter() {

@@ -33,8 +33,6 @@ public class MainActivity extends ActionBarActivity {
     Button btn_sendrequest;
     @InjectView(R.id.tv_html)
     TextView tv_html;
-    @InjectView(R.id.et_action)
-    EditText et_action;
     RequestQueue mQueue;
 
     @Override
@@ -49,18 +47,9 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.btn_sendrequest)
     public void sendRequest() {
-//        MyTask task = new MyTask();
-//        task.execute("http://ishuhui.net/CMS/");
-//        System.out.println("click");
-//        if (!et_action.getText().equals("")) {
-            Intent intent = new Intent("android.settings.SYNC_SETTINGS");
-            startActivity(intent);
-//        }
-//        Intent i = new Intent(Intent.ACTION_MAIN);
-//        ComponentName cn = new ComponentName("com.android.settings", "com.android.settings.SubSettings");
-//        i.setComponent(cn);
-//        i.putExtra(Settings.EXTRA_ACCOUNT_TYPES,)
-//        startActivity(i);
+        MyTask task = new MyTask();
+        task.execute("http://ishuhui.net/ComicBookInfo/35");
+        System.out.println("click");
     }
 
 
@@ -73,37 +62,21 @@ public class MainActivity extends ActionBarActivity {
             System.err.println("Error");
             e.printStackTrace();
         }
-        List<ContainerBean> list = new ArrayList<>();
+        List<PageBean> list = new ArrayList<>();
 
-        Elements elements = document.select("div.reportersBox").select("div.reportersMain");
+        Elements elements = document.select("div.volumeControl").select("a");
         stringBuffer.append(elements.toString() + "\n\n\n");
 
         for (Element element : elements) {
-
-            ContainerBean containerBean = new ContainerBean();
-            containerBean.setTitle(element.select("div.mangeListTitle").select("span").text());
-
-            List<ChildItemBean> childItemList = new ArrayList<>();
-
-            for (Element ele : element.select("ul.reportersList").select("li").select("a")) {
-                ChildItemBean childItemBean = new ChildItemBean();
-                childItemBean.setLink("http://ishuhui.net/" + ele.attr("href"));
-                childItemBean.setChildTitle(ele.select("span").get(0).text().replace("&amp", "\t"));
-                childItemBean.setCretedTime(ele.select("span").get(1).text());
-                childItemList.add(childItemBean);
-            }
-            containerBean.setChildDataList(childItemList);
-            list.add(containerBean);
+            PageBean bean= new PageBean();
+            bean.setText(element.text());
+            bean.setLink("http://ishuhui.net/"+element.attr("href"));
+            list.add(bean);
         }
 
-        for (ContainerBean bean1 : list) {
-            System.out.println(bean1.getTitle());
-            List<ChildItemBean> beans = bean1.getChildDataList();
-            for (ChildItemBean bean : beans) {
-                System.out.println(bean.getChildTitle());
-                System.out.println(bean.getCretedTime());
-                System.out.println(bean.getLink());
-            }
+        for (PageBean bean1 : list) {
+            System.out.println(bean1.getText());
+            System.out.println(bean1.getLink());
             System.out.println("------------------------------------------------------------------");
         }
 
@@ -246,6 +219,26 @@ public class MainActivity extends ActionBarActivity {
 
         public void setTitle(String title) {
             this.title = title;
+        }
+    }
+    public class PageBean {
+        private String text;
+        private String link;
+
+        public String getLink() {
+            return link;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
         }
     }
 }

@@ -17,6 +17,7 @@ import com.flying.xiaopo.poishuhui.Beans.ContainerBean;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -37,6 +38,8 @@ public class ComicNewsFragment extends Fragment implements SwipeRefreshLayout.On
 
     ContainerLinearAdapter adapter;
 
+    List<ContainerBean> list_data;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class ComicNewsFragment extends Fragment implements SwipeRefreshLayout.On
     private void init() {
         context = getActivity();
         adapter = new ContainerLinearAdapter(context);
+        list_data = new ArrayList<>();
     }
 
     @Nullable
@@ -58,7 +62,10 @@ public class ComicNewsFragment extends Fragment implements SwipeRefreshLayout.On
         rv_comic_news.setAdapter(adapter);
         refresh_comic_news.setOnRefreshListener(this);
         refresh_comic_news.setRefreshing(true);
-        onRefresh();
+
+
+            onRefresh();
+
         return rootView;
     }
 

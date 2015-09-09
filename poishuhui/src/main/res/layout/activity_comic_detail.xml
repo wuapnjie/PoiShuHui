@@ -9,6 +9,7 @@
 		android:id="@+id/toolbar_detail"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/toolbar_height"
+		android:fadingEdge="vertical"
 		android:background="@color/toolbar_color"
 		></android.support.v7.widget.Toolbar>
 
@@ -19,6 +20,7 @@
 		android:layout_weight="1">
 
 		<LinearLayout
+			android:layout_margin="@dimen/card_margin"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:orientation="horizontal">

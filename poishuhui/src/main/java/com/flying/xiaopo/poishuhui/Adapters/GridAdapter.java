@@ -86,7 +86,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
         holder.iv_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, mData.get(position).getLink(), Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(v, mData.get(position).getLink(), Snackbar.LENGTH_SHORT).show();
                 if (onCellClickListener != null) onCellClickListener.onCellClick(v, position);
             }
         });
