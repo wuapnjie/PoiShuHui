@@ -6,9 +6,12 @@
 		<item name="colorPrimary">#00bcd4</item>
 		<!-- Customize your theme here. -->
 	</style>
+
 	<style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimaryDark">#26c6da</item>
 		<item name="colorPrimary">#00bcd4</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
 	<color name="toolbar_color">#00bcd4</color>

@@ -28,6 +28,9 @@ public class HtmlUtil {
     public static final String URL_NEWS = "http://ishuhui.net/CMS/";
     public static final String URL_NEWS_PREFIX = "http://ishuhui.net/";
 
+    public static final String TEXT_TIME = "time";
+    public static final String TEXT_DETAIL = "detail";
+
 
     public static Document obtainDocument(String url) {
         Document document = null;
@@ -185,6 +188,32 @@ public class HtmlUtil {
             list.add(bean);
         }
         return list;
+    }
+
+    /**
+     * 获取最新更新时间
+     *
+     * @param url
+     * @param what
+     * @return
+     */
+    public static String obtainText(String url, String what) {
+        Document document = obtainDocument(url);
+
+        String text;
+        if (document == null) return null;
+        switch (what) {
+            case TEXT_TIME:
+                text = document.select("div.mangaInfoDate").text();
+                break;
+            case TEXT_DETAIL:
+                text = document.select("div.mangaInfoTextare").text();
+                break;
+            default:
+                text = "";
+                break;
+        }
+        return text;
     }
 
 }

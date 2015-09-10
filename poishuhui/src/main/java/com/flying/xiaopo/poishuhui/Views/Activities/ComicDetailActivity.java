@@ -67,7 +67,7 @@ public class ComicDetailActivity extends AppCompatActivity implements OnCellClic
     }
 
     private void startLoad(String taskURL) {
-        PageTask task = new PageTask(){
+        PageTask task = new PageTask() {
             @Override
             protected void onPostExecute(List<PageBean> pageBeans) {
                 super.onPostExecute(pageBeans);
@@ -114,4 +114,5 @@ public class ComicDetailActivity extends AppCompatActivity implements OnCellClic
             return HtmlUtil.obtainPageList(params[0]);
         }
     }
+
 }

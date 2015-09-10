@@ -126,5 +126,6 @@ public class ComicBookListFragment extends Fragment implements SwipeRefreshLayou
         intent.putExtras(bundle);
         intent.setClass(context, ComicDetailActivity.class);
         startActivity(intent);
+        getActivity().overridePendingTransition(0, 0);
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PoiShuHui.iml" filepath="$PROJECT_DIR$/PoiShuHui.iml" />
       <module fileurl="file://$PROJECT_DIR$/opreader/opreader.iml" filepath="$PROJECT_DIR$/opreader/opreader.iml" />
       <module fileurl="file://$PROJECT_DIR$/poishuhui/poishuhui.iml" filepath="$PROJECT_DIR$/poishuhui/poishuhui.iml" />
       <module fileurl="file://$PROJECT_DIR$/shader/shader.iml" filepath="$PROJECT_DIR$/shader/shader.iml" />
