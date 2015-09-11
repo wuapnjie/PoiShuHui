@@ -37,4 +37,6 @@
 
 	<color name="news_white">#fff</color>
 	<color name="news_gray">#1000</color>
+
+	<color name="search_color">#50000000</color>
 </resources>
