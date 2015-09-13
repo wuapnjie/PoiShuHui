@@ -3,6 +3,8 @@ package com.flying.xiaopo.poishuhui.Views.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +21,7 @@ import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlTask;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
 import com.flying.xiaopo.poishuhui.Views.Activities.ComicActivity;
+import com.flying.xiaopo.poishuhui.Views.Activities.MainActivity;
 import com.flying.xiaopo.poishuhui.Views.CustomViews.SlideLayout;
 
 import java.util.ArrayList;
@@ -47,6 +50,8 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
     List<ItemBean> data_slide;
     List<ItemBean> data_list;
 
+    Handler mHandler;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,7 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
         data_list = new ArrayList<>();
         layoutManager = new GridLayoutManager(context, 2);
         adapter = new GridAdapter(context);
+        mHandler = ((MainActivity)getActivity()).getHandler();
     }
 
     @Nullable
@@ -102,6 +108,7 @@ public class MainFragment extends Fragment implements SlideLayout.OnChildClickLi
                 adapter.obtainData(baseBeans);
                 adapter.notifyDataSetChanged();
                 adapter.setOnCellClickListener(MainFragment.this);
+                mHandler.sendEmptyMessage(0);
             }
         };
         task2.execute(HtmlUtil.URL_MAIN, HtmlTask.TASK_ITEM);

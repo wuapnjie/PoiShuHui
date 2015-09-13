@@ -17,7 +17,7 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 /**
- * Created by lenovo on 2015/6/6.
+ * Created by xiaopo on 2015/6/6.
  */
 public class CircleRevealLayout extends LinearLayout {
     public CircleRevealLayout(Context context) {
@@ -65,7 +65,7 @@ public class CircleRevealLayout extends LinearLayout {
         changeState(STATE_FILL_START);
         startLocationX = location[0];
         startLocationY = location[1];
-        revealAnimator = ObjectAnimator.ofInt(this, "currentRadius", 0, getWidth() + getHeight()).setDuration(4000);
+        revealAnimator = ObjectAnimator.ofInt(this, "currentRadius", 0, getWidth() + getHeight()).setDuration(400);
         Log.d("VIEW",getWidth()+getHeight()+"width+height");
         revealAnimator.setInterpolator(INTERPOLATOR);
         revealAnimator.addListener(new AnimatorListenerAdapter() {

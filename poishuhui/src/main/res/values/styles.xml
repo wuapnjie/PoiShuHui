@@ -22,12 +22,12 @@
 	<color name="fragment_background">#fff</color>
 
 	<color name="title_background">#7fff</color>
-	<color name="title_textcolor">#000</color>
+	<color name="title_textcolor">#757575</color>
 
 	<color name="ImageView_background">#b2c6ce</color>
 
 	<color name="pagebar_background">#7fff</color>
-	<color name="pagebar_text_color">#d000</color>
+	<color name="pagebar_text_color">#9e9e9e</color>
 
 	<color name="btn_transparent">@android:color/transparent</color>
 
@@ -38,8 +38,10 @@
 	<color name="default_color">#fff</color>
 	<color name="default_background">#fff</color>
 
-	<color name="item_title_color">#d000</color>
+	<color name="item_title_color">#9e9e9e</color>
 
 	<color name="news_white">#fff</color>
 	<color name="news_gray">#1000</color>
+
+	<color name="search_color">#50000000</color>
 </resources>

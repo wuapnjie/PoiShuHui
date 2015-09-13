@@ -52,6 +52,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="bottom|right"
 			android:layout_margin="16dp"
+			android:src="@drawable/ic_search_white_24dp"
 			app:layout_anchorGravity="bottom|right|end"/>
 	</android.support.design.widget.CoordinatorLayout>
 
@@ -97,9 +98,14 @@
 		</android.support.v7.widget.CardView>
 
 		<!--<ListView-->
-			<!--android:id="@+id/list_last_search"-->
-			<!--android:layout_width="match_parent"-->
-			<!--android:layout_height="0dp"-->
-			<!--android:layout_weight="1"></ListView>-->
+		<!--android:id="@+id/list_last_search"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="0dp"-->
+		<!--android:layout_weight="1"></ListView>-->
 	</LinearLayout>
+	<com.flying.xiaopo.poishuhui.Views.CustomViews.SunnyLoad
+		android:id="@+id/sunnyload"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#79fcff"/>
 </FrameLayout>

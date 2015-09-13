@@ -9,7 +9,7 @@
 	<item android:id="@+id/action_search"
 	      android:title="@string/action_search"
 	      app:showAsAction="always"
-	      android:icon="@android:drawable/ic_menu_search">
+	      android:icon="@drawable/ic_search_white_24dp">
 	</item>
 </menu>
 

@@ -10,6 +10,9 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -32,6 +35,7 @@ import android.widget.LinearLayout;
 import com.flying.xiaopo.poishuhui.R;
 import com.flying.xiaopo.poishuhui.Utils.HtmlUtil;
 import com.flying.xiaopo.poishuhui.Utils.Utils;
+import com.flying.xiaopo.poishuhui.Views.CustomViews.SunnyLoad;
 import com.flying.xiaopo.poishuhui.Views.Fragments.ComicBookListFragment;
 import com.flying.xiaopo.poishuhui.Views.Fragments.ComicListFragment;
 import com.flying.xiaopo.poishuhui.Views.Fragments.ComicNewsFragment;
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton ibtn_exit_search;
     @InjectView(R.id.searchbar)
     CardView searchbar;
+    @InjectView(R.id.sunnyload)
+    SunnyLoad mSunnyLoad;
 
     List<Fragment> pagers;
 
@@ -69,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ComicListFragment comicListFragment;
     ComicBookListFragment comicBookListFragment;
     ComicNewsFragment comicNewsFragment;
+
+    Handler mHandler;
 
     public static final int DEVICE_WIDTH;
     public static final int DEVICE_HEIGHT;
@@ -122,6 +130,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et_search.setHint(R.string.search_hint);
         et_search.setTextColor(Color.GRAY);
         ibtn_exit_search.setOnClickListener(this);
+
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                mSunnyLoad.setVisibility(View.GONE);
+            }
+        };
     }
 
     @Override
@@ -138,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_search:
                 showSearchBar(this);
                 break;
@@ -190,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onAnimationStart(Animator animation) {
                     super.onAnimationStart(animation);
+                    ll_container.setClickable(true);
                     search_container.setVisibility(View.VISIBLE);
                 }
 
@@ -203,6 +220,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             show_animator.setDuration(300);
             show_animator.start();
         } else {
+            search_container.setVisibility(View.VISIBLE);
+            et_search.requestFocus();
             ((InputMethodManager) ctx.getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(et_search, 0);
         }
     }
@@ -220,6 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
                     search_container.setVisibility(View.INVISIBLE);
+                    ll_container.setClickable(false);
                     ((InputMethodManager) ctx.getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(searchbar.getWindowToken(), 0);
                 }
             });
@@ -231,5 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+    public Handler getHandler() {
+        return mHandler;
+    }
 }

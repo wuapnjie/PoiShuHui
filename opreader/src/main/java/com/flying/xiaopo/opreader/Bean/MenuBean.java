@@ -1,7 +1,7 @@
 package com.flying.xiaopo.opreader.Bean;
 
 /**
- * ´æ´¢ĞÅÏ¢µÄjavabean
+ * javabean
  * Created by lenovo on 2015/5/31.
  */
 public class MenuBean {
