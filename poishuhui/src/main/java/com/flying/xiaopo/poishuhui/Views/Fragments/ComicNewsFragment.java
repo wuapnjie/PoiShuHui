@@ -63,8 +63,7 @@ public class ComicNewsFragment extends Fragment implements SwipeRefreshLayout.On
         refresh_comic_news.setOnRefreshListener(this);
         refresh_comic_news.setRefreshing(true);
 
-
-            onRefresh();
+        onRefresh();
 
         return rootView;
     }
@@ -86,6 +85,7 @@ public class ComicNewsFragment extends Fragment implements SwipeRefreshLayout.On
     public void onRefresh() {
         startLoad(HtmlUtil.URL_NEWS);
     }
+
 
     private class NewsTask extends AsyncTask<String, Void, List<ContainerBean>> {
         @Override

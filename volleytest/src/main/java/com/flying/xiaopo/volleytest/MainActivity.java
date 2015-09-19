@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.btn_sendrequest)
     Button btn_sendrequest;
-    @InjectView(R.id.tv_html)
-    TextView tv_html;
+    @InjectView(R.id.webview)
+    WebView mWebView;
     RequestQueue mQueue;
 
     @Override
@@ -48,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.btn_sendrequest)
     public void sendRequest() {
         MyTask task = new MyTask();
-        task.execute("http://ishuhui.net/ComicBookInfo/35");
+        task.execute("http://ishuhui.net/CMS/447");
         System.out.println("click");
     }
 
@@ -62,23 +63,10 @@ public class MainActivity extends ActionBarActivity {
             System.err.println("Error");
             e.printStackTrace();
         }
-        List<PageBean> list = new ArrayList<>();
 
-        Elements elements = document.select("div.volumeControl").select("a");
+        Elements elements = document.select("div.featureContentText");
         stringBuffer.append(elements.toString() + "\n\n\n");
 
-        for (Element element : elements) {
-            PageBean bean= new PageBean();
-            bean.setText(element.text());
-            bean.setLink("http://ishuhui.net/"+element.attr("href"));
-            list.add(bean);
-        }
-
-        for (PageBean bean1 : list) {
-            System.out.println(bean1.getText());
-            System.out.println(bean1.getLink());
-            System.out.println("------------------------------------------------------------------");
-        }
 
         return stringBuffer.toString();
     }
@@ -94,9 +82,18 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            tv_html.setText(s);
+            System.out.println(s);
+            mWebView.loadData("<html>" + s + "</html>", "text/html", "UTF-8");
         }
     }
+
+
+
+
+
+
+
+
 
     public class ComicBean {
         private String text;

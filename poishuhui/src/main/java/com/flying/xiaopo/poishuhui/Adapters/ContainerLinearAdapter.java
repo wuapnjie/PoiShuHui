@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flying.xiaopo.poishuhui.Adapters.Impl.OnCellClickListener;
+import com.flying.xiaopo.poishuhui.Beans.ComicBean;
 import com.flying.xiaopo.poishuhui.Beans.ContainerBean;
 import com.flying.xiaopo.poishuhui.R;
 
@@ -29,6 +31,7 @@ public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinear
 
     private LayoutInflater inflater;
 
+
     public ContainerLinearAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -42,6 +45,7 @@ public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinear
         return container_data;
     }
 
+
     @Override
     public NewsContainerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.news_container_item, parent, false);
@@ -53,11 +57,6 @@ public class ContainerLinearAdapter extends RecyclerView.Adapter<ContainerLinear
         holder.tv_container_title.setText(container_data.get(position).getTitle());
         LinearLayoutManager manager = new LinearLayoutManager(context);
         ChildNewsAdapter adapter = new ChildNewsAdapter(context);
-//        for (ChildItemBean bean : container_data.get(position).getChildDataList()) {
-//            System.out.println(bean.getLink());
-//            System.out.println(bean.getChildTitle());
-//            System.out.println(bean.getCreatedTime());
-//        }
         holder.rv_child_container.setAdapter(adapter);
         holder.rv_child_container.setLayoutManager(manager);
         adapter.obtainData(container_data.get(position).getChildDataList());

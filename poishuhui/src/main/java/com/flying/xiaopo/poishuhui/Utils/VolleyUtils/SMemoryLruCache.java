@@ -40,7 +40,7 @@ public class SMemoryLruCache extends LruCache<String, Bitmap> implements ImageLo
     @Override
     public Bitmap getBitmap(String s) {
         if (BuildConfig.DEBUG) {
-            Log.v(TAG, "Retrieved item from Mem Cache");
+            Log.d(TAG, "Retrieved comic_item from Mem Cache");
         }
         return this.get(s);
     }
@@ -48,7 +48,7 @@ public class SMemoryLruCache extends LruCache<String, Bitmap> implements ImageLo
     @Override
     public void putBitmap(String s, Bitmap bitmap) {
         if (BuildConfig.DEBUG) {
-            Log.v(TAG, "Added item to Mem Cache");
+            Log.d(TAG, "Added comic_item to Mem Cache");
         }
         this.put(s, bitmap);
     }

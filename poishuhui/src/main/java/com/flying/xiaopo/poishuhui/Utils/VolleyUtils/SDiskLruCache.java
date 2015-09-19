@@ -59,22 +59,21 @@ public class SDiskLruCache {
         try {
             editor = mDiskLruCache.edit(cacheUrl);
             if (editor == null) return;
-            if (writeBitmapToFile(bitmap, editor)) {
+            if (writeBitmapToFile(bitmap, editor)&&getBitmap(url)!=null) {
                 mDiskLruCache.flush();
                 editor.commit();
-
-                Log.v("cache_test_DISK_", "image put on disk cache " + url);
+                Log.d("cache_test_DISK_", "image put on disk cache " + url);
 
             } else {
                 editor.abort();
 
-                Log.v("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
+                Log.d("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
 
             }
         } catch (IOException e) {
             e.printStackTrace();
 
-            Log.v("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
+            Log.d("cache_test_DISK_", "ERROR on: image put on disk cache " + url);
 
             try {
                 if (editor != null) {
@@ -109,7 +108,7 @@ public class SDiskLruCache {
             if (in != null) {
                 final BufferedInputStream bufferedInputStream = new BufferedInputStream(in, IO_BUFFER_SIZE);
                 bitmap = BitmapFactory.decodeStream(bufferedInputStream);
-                Log.v("cache_test_DISK_", "image get from disk cache " + url);
+                Log.d("cache_test_DISK_", "image get from disk cache " + url);
             }
         } catch (IOException e) {
             e.printStackTrace();

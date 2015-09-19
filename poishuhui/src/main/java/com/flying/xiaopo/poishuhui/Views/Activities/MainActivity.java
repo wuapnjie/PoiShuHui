@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -78,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Handler mHandler;
 
+    private boolean isSearching = false;
+
     public static final int DEVICE_WIDTH;
     public static final int DEVICE_HEIGHT;
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et_search.setTextColor(Color.GRAY);
         ibtn_exit_search.setOnClickListener(this);
 
-        mHandler = new Handler(){
+        mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -162,10 +163,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isSearching) {
+            hideSearchbar(this);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     /**
      * ViewPager's adapter
      */
-    public class MyViewPagerAdapter extends FragmentPagerAdapter {
+    private class MyViewPagerAdapter extends FragmentPagerAdapter {
         public static final int PAGER_NUM = 4;
         int[] titles = new int[]{R.string.tab_1, R.string.tab_2, R.string.tab_3, R.string.tab_4};
 
@@ -224,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             et_search.requestFocus();
             ((InputMethodManager) ctx.getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(et_search, 0);
         }
+        isSearching = true;
     }
 
     /**
@@ -249,9 +260,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             search_container.setVisibility(View.INVISIBLE);
             ((InputMethodManager) ctx.getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(searchbar.getWindowToken(), 0);
         }
+        isSearching = false;
     }
 
     public Handler getHandler() {
         return mHandler;
     }
+
+
 }

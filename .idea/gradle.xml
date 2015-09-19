@@ -9,9 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/opreader" />
             <option value="$PROJECT_DIR$/poishuhui" />
-            <option value="$PROJECT_DIR$/shader" />
             <option value="$PROJECT_DIR$/volleytest" />
           </set>
         </option>

@@ -65,7 +65,7 @@ public class BitmapHelper {
 
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.color.default_color);
                     if (onLoadFinishedListener != null)
                         onLoadFinishedListener.onLoadSuccessed();
                 }

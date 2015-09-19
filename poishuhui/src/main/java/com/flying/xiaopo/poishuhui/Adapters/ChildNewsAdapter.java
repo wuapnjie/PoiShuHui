@@ -1,7 +1,7 @@
 package com.flying.xiaopo.poishuhui.Adapters;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.flying.xiaopo.poishuhui.Beans.ChildItemBean;
 import com.flying.xiaopo.poishuhui.R;
+import com.flying.xiaopo.poishuhui.Views.Activities.NewsDetailActivity;
 
 import java.util.List;
 
@@ -39,14 +40,15 @@ public class ChildNewsAdapter extends RecyclerView.Adapter<ChildNewsAdapter.Chil
         return child_data;
     }
 
+
     @Override
     public ChildViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.childnewsitem, parent, false);
+        View itemView = inflater.inflate(R.layout.child_news_item, parent, false);
         return new ChildViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ChildViewHolder holder, int position) {
+    public void onBindViewHolder(ChildViewHolder holder, final int position) {
         final ChildItemBean bean = child_data.get(position);
         int resId = position % 2 == 0 ? R.color.news_gray : R.color.news_white;
         holder.child_news_container.setBackgroundResource(resId);
@@ -55,7 +57,12 @@ public class ChildNewsAdapter extends RecyclerView.Adapter<ChildNewsAdapter.Chil
         holder.child_news_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, bean.getLink(), Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(context,NewsDetailActivity.class);
+                intent.putExtra(NewsDetailActivity.INTENT_KEY_URL, child_data.get(position).getLink());
+                intent.putExtra(NewsDetailActivity.INTENT_KEY_TITLE,child_data.get(position).getChildTitle());
+                intent.putExtra(NewsDetailActivity.INTENT_KEY_TIME,child_data.get(position).getCreatedTime());
+                context.startActivity(intent);
             }
         });
     }
@@ -64,6 +71,7 @@ public class ChildNewsAdapter extends RecyclerView.Adapter<ChildNewsAdapter.Chil
     public int getItemCount() {
         return child_data == null ? 0 : child_data.size();
     }
+
 
     public class ChildViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.tv_news_title)

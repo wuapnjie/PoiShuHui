@@ -1,7 +1,6 @@
 package com.flying.xiaopo.poishuhui.Adapters;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +62,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CellViewHolder
 
     @Override
     public CellViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.item, parent, false);
+        View itemView = inflater.inflate(R.layout.comic_item, parent, false);
         return new CellViewHolder(itemView);
     }
 

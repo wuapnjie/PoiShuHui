@@ -48,7 +48,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder
 
     @Override
     public PageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.pageitem, parent, false);
+        View itemView = inflater.inflate(R.layout.page_item, parent, false);
         return new PageViewHolder(itemView);
     }
 
