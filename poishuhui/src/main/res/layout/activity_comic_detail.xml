@@ -52,7 +52,7 @@
 					android:id="@+id/tv_detail_time"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="Time"
+					android:text=""
 					android:textColor="@color/title_textcolor"
 					android:textSize="@dimen/detail_time_size"/>
 
@@ -60,7 +60,7 @@
 					android:id="@+id/tv_detail_intro"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="intro"
+					android:text=""
 					android:textColor="@color/title_textcolor"
 					android:textSize="@dimen/detail_intro_size"/>
 			</LinearLayout>

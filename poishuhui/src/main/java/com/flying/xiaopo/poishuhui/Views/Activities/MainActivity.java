@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ComicBookListFragment comicBookListFragment;
     ComicNewsFragment comicNewsFragment;
 
-    Handler mHandler;
+    private static Handler mHandler;
 
     private boolean isSearching = false;
 

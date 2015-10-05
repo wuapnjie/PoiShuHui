@@ -221,40 +221,12 @@ public class HtmlUtil {
      * @param url
      * @return
      */
-//    public static List<ComicBean> obtainNewsContent(String url) {
-//        Document document = obtainDocument(url);
-//        List<ComicBean> list = new ArrayList<>();
-//        if (document == null) return null;
-//
-//        Elements elements = document.select("div.featureContentText").select("span");
-//        for (Element element : elements) {
-//            ComicBean bean = new ComicBean();
-//            bean.setText(element.text());
-//            bean.setPicURL(element.select("img").attr("src"));
-////            System.out.println(element.text());
-////            System.out.println(element.select("img").attr("src"));
-////            System.out.println("-----------------------------");
-//
-//            list.add(bean);
-//        }
-//        return list;
-//    }
     public static String obtainNewsContent(String url) {
         Document document = obtainDocument(url);
         List<ComicBean> list = new ArrayList<>();
         if (document == null) return null;
 
         Elements elements = document.select("div.featureContentText");
-//        for (Element element : elements) {
-//            ComicBean bean = new ComicBean();
-//            bean.setText(element.text());
-//            bean.setPicURL(element.select("img").attr("src"));
-////            System.out.println(element.text());
-////            System.out.println(element.select("img").attr("src"));
-////            System.out.println("-----------------------------");
-//
-//            list.add(bean);
-//        }
         System.out.println(elements.toString());
         return "<html>"+document.select("head").toString()+"<body>"+elements.toString()+"</body>"+"</html>";
     }
