@@ -59,7 +59,7 @@ public class SDiskLruCache {
         try {
             editor = mDiskLruCache.edit(cacheUrl);
             if (editor == null) return;
-            if (writeBitmapToFile(bitmap, editor)&&getBitmap(url)!=null) {
+            if (writeBitmapToFile(bitmap, editor)) {
                 mDiskLruCache.flush();
                 editor.commit();
                 Log.d("cache_test_DISK_", "image put on disk cache " + url);
